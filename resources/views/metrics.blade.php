@@ -27,17 +27,60 @@
     </tr>
   </thead>
   <tbody>
+ 
+   @foreach($data as $val)
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <th scope="row">{{$val->id}}</th>
+      <td>{{$val->name}}</td>
+      <td><a href="#" class="btn btn-outline-success" data-toggle="modal" data-target="#modal-update-{{ $val->id }}">Update</a></td>
+      <td><a href="/delete/{{$val->id}}" class="btn btn-outline-danger" >Delete</a></td>
     </tr>
 
+<div class="modal fade" id="modal-update-{{ $val->id }}" tabindex="-1" role="dialog" aria-labelledby="updatemodelLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updatemodelLabel">Metrics Update</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/update"  method="post">
+         @csrf
+          <div class="form-group">
+            <label for="metrics" class="col-form-label">Metrics Name:</label>
+            <input type="text" name ="name" class="form-control" value="{{$val->name}}" >
+          </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+  @endforeach 
   </tbody>
 </table>
 </div>
 
-
-
 @endsection 
+
+
+
+ <script>
+$('#updatemodel').on('show', function(e) {
+    var link     = e.relatedTarget(),
+        modal    = $(this),
+        name = link.data("name"),
+
+    modal.find("#name").val(name);
+});
+
+</script>
+
+
