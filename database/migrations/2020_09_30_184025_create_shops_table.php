@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShopTable extends Migration
+class CreateShopsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,27 +15,28 @@ class CreateShopTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_ID');
-            $table->string('shopname');
-            $table->string('ownername');
-            $table->string('NIC')->unique();
-            $table->string('email')->unique();
-            $table->string('address');
-            $table->string('city');
-            $table->string('telephonemobile');
-            $table->string('telephonebusiness');
-            $table->string('businessIDnumber');
-            $table->string('ownerphoto');
-            $table->string('shopphoto');
+            $table->unsignedBigInteger('user_id');
+            $table->string('name');
+            $table->string('owner_name');
+            $table->string('nic')->unique()->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('tel_mobile')->nullable();
+            $table->string('tel_business')->nullable();
+            $table->string('business_id_num')->nullable();
+            $table->string('photo')->nullable();
+            $table->string('owner_photo')->nullable();
             $table->boolean('cash')->default(0);
             $table->boolean('check')->default(0);
             $table->boolean('credit')->default(0);
             $table->boolean('approve')->default(0);
             $table->timestamps();
 
-              $table->foreign('user_ID')
+              $table->foreign('user_id')
                 ->references('id')->on('users')
-                ->onUpdate('cascade');
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
         });
     }
 

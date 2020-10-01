@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticalCategoryTable extends Migration
+class CreateMetricsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateArticalCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('articalcategories', function (Blueprint $table) {
+        Schema::create('metrics', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unique();
-            $table->boolean('buying');
-            $table->boolean('selling');
-            $table->string('comments');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateArticalCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articalcategories');
+        Schema::dropIfExists('metrics');
     }
 }
