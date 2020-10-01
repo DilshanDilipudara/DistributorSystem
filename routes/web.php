@@ -15,9 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/metrics',function(){
-     return view('metrics');
+Route::get('/metrics', function () {
+    return view('metrics');
 });
+
+Route::post('/add','metric@add');
 
 Auth::routes();
 

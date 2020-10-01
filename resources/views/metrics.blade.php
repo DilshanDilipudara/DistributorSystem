@@ -5,14 +5,15 @@
 <h2 class="col-md-12 text-center"> Metrics</h2>
 <br>
 <div class="container">
-    <form>
+    <form action="/add"  method="post">
+       @csrf 
         <div class="form-group row">
             <label for="inputmetrics" class="col-sm-2 col-form-label">Metrics Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="metricsname" placeholder="metrics">
+                <input type="text" class="form-control" name="name" id="metricsname" placeholder="metrics">
             </div>
         </div>
-         <div class="offset-6"><button type="button" class="btn btn-outline-primary">Primary</button></div> 
+         <div class="offset-6"><button type="submit" class="btn btn-outline-primary" >Submit</button></div> 
     </form>
     <br>
     <br>
