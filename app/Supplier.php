@@ -12,7 +12,8 @@ class Supplier extends Model
 
      public function articleCategory(){
 
-        return $this->belongsToMany('App\ArticleCategory');
+        return $this->belongsToMany('App\ArticleCategory')
+            ->withTimestamps();
 
     }
 }
