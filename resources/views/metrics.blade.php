@@ -32,55 +32,58 @@
     <tr>
       <th scope="row">{{$val->id}}</th>
       <td>{{$val->name}}</td>
-      <td><a href="#" class="btn btn-outline-success" data-toggle="modal" data-target="#modal-update-{{ $val->id }}">Update</a></td>
+      <td><button class="btn btn-outline-success" data-toggle="modal" data-name="{{$val->name}}"  data-id="{{$val->id}}" type="button" onClick="triggerModel('{{$val->name}}', '{{$val->id}}')" data-target="#modal-update">Update</button></td>
       <td><a href="/delete/{{$val->id}}" class="btn btn-outline-danger" >Delete</a></td>
     </tr>
-
-<div class="modal fade" id="modal-update-{{ $val->id }}" tabindex="-1" role="dialog" aria-labelledby="updatemodelLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="updatemodelLabel">Metrics Update</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="/update"  method="post">
-         @csrf
-          <div class="form-group">
-            <label for="metrics" class="col-form-label">Metrics Name:</label>
-            <input type="text" name ="name" class="form-control" value="{{$val->name}}" >
-          </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Update</button>
-            </div>
-        </form>
-      </div>
-    
-    </div>
-  </div>
-</div>
-
   @endforeach 
   </tbody>
 </table>
 </div>
 
-@endsection 
+
+<div class="modal fade" id="modal-update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+      <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold">Metrics Update</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+       <div class="modal-body">
+      <form id="" method="post" action="/update" enctype="multipart/form-data">
+             {{ csrf_field() }}                        
+                        
+          <div class="form-group">
+            <label for="" class="col-form-label">Metrics Name:</label>
+            <input type="text" class="form-control" id="modelFieldName" value="" name ="name" >
+          </div>
+          <input id="modelFieldId" type="hidden" class="form-control" name="id" value ="" >
+          <div class="modal-footer">
+              <div class="text-center">
+                  <button type="submit" class="btn btn-primary ">  Save  </button>
+                  <button type="button" class="btn btn-danger " data-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </form>  
+      </div>           
+      </div>
+  </div>
+  </div>
 
 
 
- <script>
-$('#updatemodel').on('show', function(e) {
-    var link     = e.relatedTarget(),
-        modal    = $(this),
-        name = link.data("name"),
+@endsection
 
-    modal.find("#name").val(name);
-});
+<script>
+function triggerModel(name, id) {
+  document.getElementById("modelFieldName").value = name;
+  document.getElementById("modelFieldId").value = id;  
+}
 
 </script>
+
+
 
 

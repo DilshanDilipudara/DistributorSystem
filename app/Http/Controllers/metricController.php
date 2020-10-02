@@ -31,7 +31,11 @@ class metricController extends Controller
     }
     //update
     public function update(Request $req){
-        dd($req);
+        //dd($req);
+       $data =  Metric::find($req->id);
+       $data->name = $req->name;
+       $data->save();
+       return redirect('/metrics');
     }
 
 }
