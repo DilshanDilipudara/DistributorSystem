@@ -5,12 +5,12 @@
 <h2 class="col-md-12 text-center"> Metrics</h2>
 <br>
 <div class="container">
-    <form action="/add"  method="post">
+    <form action="/addmetrics"  method="post">
        @csrf 
         <div class="form-group row">
             <label for="inputmetrics" class="col-sm-2 col-form-label">Metrics Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="name" id="metricsname" placeholder="metrics">
+                <input type="text" class="form-control" name="name" id="metricsname" placeholder="cm">
             </div>
         </div>
          <div class="offset-6"><button type="submit" class="btn btn-outline-primary" >Submit</button></div> 
@@ -33,7 +33,7 @@
       <th scope="row">{{$val->id}}</th>
       <td>{{$val->name}}</td>
       <td><button class="btn btn-outline-success" data-toggle="modal" data-name="{{$val->name}}"  data-id="{{$val->id}}" type="button" onClick="triggerModel('{{$val->name}}', '{{$val->id}}')" data-target="#modal-update">Update</button></td>
-      <td><a href="/delete/{{$val->id}}" class="btn btn-outline-danger" >Delete</a></td>
+      <td><a href="/deletemetrics/{{$val->id}}" class="btn btn-outline-danger" >Delete</a></td>
     </tr>
   @endforeach 
   </tbody>
@@ -52,7 +52,7 @@
           </button>
       </div>
        <div class="modal-body">
-      <form id="" method="post" action="/update" enctype="multipart/form-data">
+      <form id="" method="post" action="/updatemetrics" enctype="multipart/form-data">
              {{ csrf_field() }}                        
                         
           <div class="form-group">
