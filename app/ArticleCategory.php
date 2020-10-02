@@ -22,13 +22,4 @@ class ArticleCategory extends Model
         return $this->belongsToMany('App\Suppliers')
             ->withTimestamps();
     }
-
-    /**
-     * One ArticleCategory has one Metric
-     */
-    public function metric(){
-
-        return $this->belongsTo('App\Metric');
-    }
-
 }

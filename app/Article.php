@@ -35,5 +35,11 @@ class Article extends Model
 
     }
 
+    /**
+     * One Article has one Metric
+     */
+    public function metric(){
 
+        return $this->belongsTo('App\Metric');
+    }
 }
