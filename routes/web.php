@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//metrics
+Route::get('/metrics','metricController@view');
+Route::post('/add','metricController@add');
+Route::get('/delete/{id}','metricController@delete');
+Route::post('/update','metricController@update');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
