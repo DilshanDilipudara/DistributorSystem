@@ -16,6 +16,7 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('article_category_id');
+            $table->unsignedBigInteger('metric_id');
             $table->string('name');
             $table->double('volume',15,8)->default(0.0);
             $table->double('buy_price',15,8)->default(0.0);
@@ -31,6 +32,10 @@ class CreateArticlesTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
+            $table->foreign('metric_id')
+                ->references('id')->on('metrics')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
         });
     }
 
