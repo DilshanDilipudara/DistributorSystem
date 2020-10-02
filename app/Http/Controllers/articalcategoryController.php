@@ -23,8 +23,8 @@ class articalcategoryController extends Controller
         //dd($req);
         $data = new ArticleCategory;
         $data->name = $req->name;
-        $data->buying = $req->buying;
-        $data->selling = $req->selling;
+        $data->buying = $req->input('buying') ? true : false;
+        $data->selling = $req->input('selling') ? true : false;
         $data->comments = $req->comments;
         $data->save();
         return redirect('/articalcategory');
@@ -34,19 +34,29 @@ class articalcategoryController extends Controller
     {
 
         $data = ArticleCategory::find($req->id);
-        dd($data->id);
+        $data->isActive = false;
+        $data->save();
+        return redirect('/articalcategory');
+    }
+    //active
+    public function active(Request $req)
+    {
+        $data = ArticleCategory::find($req->id);
+        $data->isActive = true;
+        $data->save();
+        return redirect('/articalcategory');
     }
     //update
     public function update(Request $req)
     {
-        //dd($req);
+       // dd($req);
         $data =  ArticleCategory::find($req->id);
         $data->name = $req->name;
-        $data->buying = $req->buying;
-        $data->selling = $req->selling;
+        $data->buying = $req->input('buying') ? true : false;
+        $data->selling = $req->input('selling') ? true : false;
         $data->comments = $req->comments;
         $data->save();
-        return redirect('/articalCategorys');
+        return redirect('/articalcategory');
     }
 
 }

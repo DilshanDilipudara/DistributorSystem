@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get('/metrics','metricController@view');
 Route::post('/addmetrics','metricController@add');
 Route::get('/deletemetrics/{id}','metricController@delete');
+Route::get('/activemetrics/{id}', 'metricController@active');
 Route::post('/updatemetrics','metricController@update');
 Auth::routes();
 
@@ -26,6 +27,7 @@ Auth::routes();
 Route::get('/articalcategory', 'articalcategoryController@view');
 Route::post('/addarticalcategory', 'articalcategoryController@add');
 Route::get('/deletearticalcategory/{id}', 'articalcategoryController@delete');
+Route::get('/activearticalcategory/{id}', 'articalcategoryController@active');
 Route::post('/updatearticalcategory', 'articalcategoryController@update');
 Auth::routes();
 

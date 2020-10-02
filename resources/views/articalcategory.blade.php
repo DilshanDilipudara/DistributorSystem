@@ -28,7 +28,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-lable">Comments</label>
             <div class="col-sm-8">
-                <textarea name="" class="form-control" id="" rows="3" name="comments"></textarea>
+                <textarea class="form-control" id="" rows="3" name="comments"></textarea>
             </div>
         </div>
 
@@ -54,11 +54,15 @@
             <tr>
                 <th scope="row">{{$val->id}}</th>
                 <td>{{$val->name}}</td>
-                <td>{{$val->buying}}</td>
-                <td>{{$val->selling}}</td>
+                <td> <input type="checkbox" name="buying" disabled="true" class="switch-input" {{ ($val->buying ? 'checked':'') }} /></td>
+                <td> <input type="checkbox" name="selling" disabled="true" class="switch-input" {{ ($val->selling ? 'checked':'') }} /></td>
                 <td>{{$val->comments}}</td>
-                <td><button class="btn btn-outline-success" data-toggle="modal" data-name="{{$val->name}}" data-id="{{$val->id}}" data-buying="{{$val->buying}}" data-selling="{{$val->selling}}" data-selling="{{$val->selling}}" data-comments="{{$val->comments}}" type="button" onClick="triggerModel('{{$val->name}}', '{{$val->id}}')" data-target="#modal-update">Update</button></td>
+                <td><button class="btn btn-outline-success" data-toggle="modal" data-name="{{$val->name}}" data-id="{{$val->id}}" data-buying="{{$val->buying}}" data-selling="{{$val->selling}}" data-comments="{{$val->comments}}" type="button" onClick="triggerModel('{{$val->name}}', '{{$val->id}}','{{$val->buying}}','{{$val->selling}}','{{$val->comments}}')" data-target="#modal-update">Update</button></td>
+                @if($val->isActive == true)
                 <td><a href="/deletearticalcategory/{{$val->id}}" class="btn btn-outline-danger">Delete</a></td>
+                @else
+                <td><a href="/activearticalcategory/{{$val->id}}" class="btn btn-outline-primary">Active</a></td>
+                @endif
             </tr>
             @endforeach
         </tbody>
@@ -81,10 +85,27 @@
                     {{ csrf_field() }}
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">articalcategory Name:</label>
+                        <label for="" class="col-form-label">articalcategory Name :</label>
                         <input type="text" class="form-control" id="modelFieldName" value="" name="name">
                     </div>
-                    <input id="modelFieldId" type="hidden" class="form-control" name="id" value="">
+                    <div class="form-check offset-3">
+                        <input class="form-check-input" type="checkbox" name="buying" id="modelFieldbuying">
+                        <label class=" form-check-label" for="defaultCheck1">
+                            : Buying
+                        </label>
+                    </div>
+                    <div class="form-check offset-3">
+                        <input class="form-check-input" type="checkbox" name="selling" id="modelFieldselling">
+                        <label class="form-check-label" for="defaultCheck1">
+                            : Selling
+                        </label>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="" class="col-form-label"> Comments:</label>
+                        <textarea type="text" class="form-control" id="modelFieldcomments" value="" name="comments"></textarea>
+                    </div>
+                    <input id="modelFieldId" type="hidden" class="form-control" name="id" value="id">
                     <div class="modal-footer">
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary "> Save </button>
@@ -102,8 +123,19 @@
 @endsection
 
 <script>
-    function triggerModel(name, id) {
+    function triggerModel(name, id, buying, selling, comments) {
         document.getElementById("modelFieldName").value = name;
         document.getElementById("modelFieldId").value = id;
+        if (buying == 1) {
+            document.getElementById("modelFieldbuying").checked = true;
+        } else {
+            document.getElementById("modelFieldbuying").checked = false;
+        }
+        if (selling == 1) {
+            document.getElementById("modelFieldselling").checked = true;
+        } else {
+            document.getElementById("modelFieldselling").checked = false;
+        }
+        document.getElementById("modelFieldcomments").value = comments;
     }
 </script>
