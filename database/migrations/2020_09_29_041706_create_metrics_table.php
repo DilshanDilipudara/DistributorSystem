@@ -16,6 +16,7 @@ class CreateMetricsTable extends Migration
         Schema::create('metrics', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->boolean('isActive')->default(1);
             $table->timestamps();
         });
     }
