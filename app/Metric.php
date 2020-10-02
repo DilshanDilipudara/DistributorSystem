@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Metric extends Model
 {
     /**
-     * One Metric has many ArticleCategories
+     * One Metric has many Article
      */
-    public function articleCategories(){
+    public function article(){
 
-        return $this->hasMany('App\ArticleCategory');
+        return $this->hasMany('App\Article');
     }
 }
