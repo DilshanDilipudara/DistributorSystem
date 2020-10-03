@@ -24,6 +24,7 @@ class CreateSuppliersTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('reg_no')->nullable();
             $table->string('comments')->nullable();
+            $table->boolean('isActive')->default(1);
             $table->timestamps();
 
              $table->foreign('article_category_id')

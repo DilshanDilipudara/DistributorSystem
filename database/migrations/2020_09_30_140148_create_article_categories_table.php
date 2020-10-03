@@ -19,6 +19,7 @@ class CreateArticleCategoriesTable extends Migration
             $table->boolean('buying')->default(0);
             $table->boolean('selling')->default(1);
             $table->string('comments')->nullable();
+            $table->boolean('isActive')->default(1);
             $table->timestamps();
         });
     }

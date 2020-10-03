@@ -31,6 +31,7 @@ class CreateShopsTable extends Migration
             $table->boolean('check')->default(0);
             $table->boolean('credit')->default(0);
             $table->boolean('approve')->default(0);
+            $table->boolean('isActive')->default(1);
             $table->timestamps();
 
               $table->foreign('user_id')

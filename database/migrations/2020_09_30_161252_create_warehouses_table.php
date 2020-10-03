@@ -25,6 +25,7 @@ class CreateWarehousesTable extends Migration
             $table->string('comment')->nullable();
             $table->boolean('buying')->default(0);
             $table->boolean('selling')->default(1);
+            $table->boolean('isActive')->default(1);
             $table->timestamps();
 
             $table->foreign('article_id')

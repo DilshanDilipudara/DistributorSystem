@@ -24,6 +24,7 @@ class CreateArticlesTable extends Migration
             $table->double('min_sale_qty',15,8)->default(0.0);
             $table->boolean('buying')->default(0);
             $table->boolean('selling')->default(1);
+            $table->boolean('isActive')->default(1);
             $table->string('comments')->nullable();
             $table->timestamps();
 
