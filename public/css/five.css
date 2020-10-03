@@ -1,0 +1,71 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+@media (min-width: 480px) {
+    .text1{
+        display: flex !important;
+        flex-direction: column !important;
+        width:100% !important;
+    }
+    .text3{
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .sales_list1{
+        display: flex !important;
+        flex-direction: row !important;
+        width:100% !important;
+    }
+    .sales_list2{
+        width: 150px;
+
+    }
+    .sales_list3{
+        width:1650px !important;
+        margin-left: auto;
+        margin-right:auto;
+    }
+
+}
+@media (min-width: 760px) {
+    .text1{
+        display: flex !important;
+        flex-direction: column !important;
+        width:100% !important;
+    }
+    .text3{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media (min-width: 960px) {
+    .text1{
+        display: flex !important;
+        flex-direction: column !important;
+        width:100% !important;
+    }
+    .text3{
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+@media (min-width: 1400px) {
+    .sales_list2{
+        width: 10%;
+
+    }
+    .sales_list3{
+        width:90vw !important;
+        margin-left: auto;
+        margin-right:auto;
+    }
+}
