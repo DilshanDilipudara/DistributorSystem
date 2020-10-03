@@ -29,6 +29,7 @@ class CreateInvoicesTable extends Migration
             $table->string('comment')->nullable();
             $table->boolean('pending')->default(0);
             $table->boolean('closed')->default(1);
+            $table->boolean('isActive')->default(1);
             $table->timestamps();
 
             $table->foreign('shop_id')
