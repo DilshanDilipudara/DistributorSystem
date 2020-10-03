@@ -27,7 +27,16 @@ class metricController extends Controller
     public function delete(Request $req){
         
         $data = Metric::find($req->id);
-        dd($data->id);
+        $data->isActive = false;
+        $data->save();
+        return redirect('/metrics');
+    }
+    //active
+    public function active(Request $req){
+        $data = Metric::find($req->id);
+        $data->isActive = true;
+        $data->save();
+        return redirect('/metrics');
     }
     //update
     public function update(Request $req){
