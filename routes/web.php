@@ -29,7 +29,14 @@ Route::post('/addarticalcategory', 'articalcategoryController@add');
 Route::get('/deletearticalcategory/{id}', 'articalcategoryController@delete');
 Route::get('/activearticalcategory/{id}', 'articalcategoryController@active');
 Route::post('/updatearticalcategory', 'articalcategoryController@update');
-Auth::routes();
+
+
+//Artical
+Route::get('/artical', 'articalController@view');
+Route::post('/addartical', 'articalController@add');
+Route::get('/deleteartical/{id}', 'articalController@delete');
+Route::get('/activeartical/{id}', 'articalController@active');
+Route::post('/updateartical', 'articalController@update');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
