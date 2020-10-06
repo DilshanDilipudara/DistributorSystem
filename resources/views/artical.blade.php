@@ -2,26 +2,71 @@
 
 @section('content')
 <br>
-<h2 class="col-md-12 text-center"> Artical Category</h2>
+<h2 class="col-md-12 text-center"> Artical </h2>
 <br>
 <div class="container">
-    <form action="/addarticalcategory" method="post">
+    <form action="/addartical" method="post">
         @csrf
+
         <div class="form-group row">
-            <label for="inputarticalcategory" class="col-sm-2 col-form-label">Artical Category Name</label>
+            <label for="" class="col-sm-2 col-form-label">Artical Category Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="name" id="articalcategoryname" placeholder="Tea" required>
+              <select class="form-control" id="categoryID" name="categoryID"  required>
+                <option ></option>
+                @foreach($data as $item)
+                <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Artical Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="name" id="articalname" placeholder="Tea packet"  required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">volume</label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" name="volume" id="volume" placeholder="50"  required>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" name="metricID"  required>
+                    <option ></option>
+                    @foreach($metric as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
+                </select>  
+             </div>
+        </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label"  >Buy Price</label>
+            <div class="col-sm-10">
+                <input type="number" min = "0" class="form-control" name="buyprice" id="" placeholder="100"  required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label"  >Sell Price</label>
+            <div class="col-sm-10">
+                <input type="number" min = "0" class="form-control" name="sellprice" id="" placeholder="150"  required>
+            </div>
+        </div>
+         <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Min Sale Qty</label>
+            <div class="col-sm-10">
+                <input type="number" min = "0" class="form-control" name="minsale" id="" placeholder="10"  required>
             </div>
         </div>
         <div class="form-group row">
             <div class="form-check offset-6 tab-space">
-                <input type="checkbox" class="form-check-input" name="buying" >
+                <input type="checkbox" class="form-check-input" name="buying">
                 <label class="form-check-lable">Buying</label>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-3 offset-6 form-check tab-space">
-                <input type="checkbox" class="form-check-input" name="selling" >
+                <input type="checkbox" class="form-check-input" name="selling">
                 <label class="form-check-lable">Selling</label>
             </div>
         </div>
@@ -36,11 +81,20 @@
     </form>
     <br>
     <br>
-    <table class="table table-hover">
+   
+</div>
+
+ <table class="table table-hover">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Artical Category Name</th>
+                <th scope="col">Artical Name</th>
+                <th scope="col">Volume</th>
+                <th scope="col">Metric</th>
+                <th scope="col">Buy Price</th>
+                <th scope="col">Sell Price</th>
+                <th scope="col">Min Sale Qty</th>
                 <th scope="col">Buying</th>
                 <th scope="col">Selling</th>
                 <th scope="col">Comments</th>
@@ -50,10 +104,16 @@
         </thead>
         <tbody>
 
-            @foreach($data as $val)
+            @foreach($artcalData as $val)
             <tr>
                 <th scope="row">{{$val->id}}</th>
+                <td>{{$val->ArticleCategory->name}}</td>
                 <td>{{$val->name}}</td>
+                <td>{{$val->volume}}</td>
+                <td>{{$val->Metric->name}}</td>
+                <td>{{$val->buy_price}}</td>
+                <td>{{$val->sell_price}}</td>
+                <td>{{$val->min_sale_qty}}</td>
                 <td> <input type="checkbox" name="buying" disabled="true" class="switch-input" {{ ($val->buying ? 'checked':'') }} /></td>
                 <td> <input type="checkbox" name="selling" disabled="true" class="switch-input" {{ ($val->selling ? 'checked':'') }} /></td>
                 <td>{{$val->comments}}</td>
@@ -67,8 +127,6 @@
             @endforeach
         </tbody>
     </table>
-</div>
-
 
 <div class="modal fade" id="modal-update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
@@ -138,4 +196,6 @@
         }
         document.getElementById("modelFieldcomments").value = comments;
     }
+
+});
 </script>
