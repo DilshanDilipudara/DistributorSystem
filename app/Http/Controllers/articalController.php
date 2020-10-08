@@ -37,4 +37,10 @@ class articalController extends Controller
 
 
     }
+
+    public function getProdArticles(ArticleCategory $prod){
+        $articles = $prod->articles()->with('metric')->get();
+
+        return $articles;
+    }
 }

@@ -12,8 +12,7 @@ class Invoice extends Model
     public function articles(){
 
         return $this->belongsToMany('App\Article')
-            ->withPivot('date', 'unit_price', 'sale_qty', 'discount', 'free_offer', 'total')
+            ->withPivot('unit_price', 'sale_qty', 'discount', 'free_offer')
             ->withTimestamps();
-
     }
 }

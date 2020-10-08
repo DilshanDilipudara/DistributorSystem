@@ -17,12 +17,10 @@ class CreateArticleInvoiceTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('invoice_id');
             $table->unsignedBigInteger('article_id');
-            $table->date('date')->nullable();
             $table->double('unit_price')->default(0.0);
             $table->double('sale_qty')->default(0.0);
             $table->double('discount')->default(0.0);
             $table->double('free_offer')->default(0.0);
-            $table->double('total')->default(0.0);
             $table->timestamps();
 
              $table->foreign('invoice_id')
