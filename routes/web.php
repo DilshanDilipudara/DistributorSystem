@@ -15,13 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
 //metrics
 Route::get('/metrics','metricController@view');
 Route::post('/addmetrics','metricController@add');
 Route::get('/deletemetrics/{id}','metricController@delete');
 Route::get('/activemetrics/{id}', 'metricController@active');
 Route::post('/updatemetrics','metricController@update');
-Auth::routes();
 
 //Artical Category
 Route::get('/articalcategory', 'articalcategoryController@view');
@@ -40,3 +41,17 @@ Route::post('/updateartical', 'articalController@update');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// web app-7 pdf
+Route::get('/sec-2/add-new-sale', 'InvoiceController@index')->name('view-new-sale');
+Route::view('/sec-2/deliver-pending', 'ui-sec-2/deliver-pending')->name('view-deliver-pending');
+Route::view('/sec-2/pending-order-summery', 'ui-sec-2/pending-order-summery')->name('view-pending-order-summery');
+Route::view('/sec-2/review-shop', 'ui-sec-2/review-shop')->name('view-review-shop');
+Route::view('/sec-2/shop-profile', 'ui-sec-2/shop-profile')->name('view-shop-profile');
+Route::view('/sec-2/transaction-pool', 'ui-sec-2/transaction-pool')->name('view-transaction-pool');
+
+Route::get('/prod-cat/{prod}/articles', 'articalController@getProdArticles')->name('get-prod-art');
+Route::post('/add-new-sale', 'InvoiceController@addNewSale')->name('add-new-sale');
+
+
+
+Route::resource('shops', 'ShopController');
