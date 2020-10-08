@@ -117,34 +117,96 @@
                 <td> <input type="checkbox" name="buying" disabled="true" class="switch-input" {{ ($val->buying ? 'checked':'') }} /></td>
                 <td> <input type="checkbox" name="selling" disabled="true" class="switch-input" {{ ($val->selling ? 'checked':'') }} /></td>
                 <td>{{$val->comments}}</td>
-                <td><button class="btn btn-outline-success" data-toggle="modal" data-name="{{$val->name}}" data-id="{{$val->id}}" data-buying="{{$val->buying}}" data-selling="{{$val->selling}}" data-comments="{{$val->comments}}" type="button" onClick="triggerModel('{{$val->name}}', '{{$val->id}}','{{$val->buying}}','{{$val->selling}}','{{$val->comments}}')" data-target="#modal-update">Update</button></td>
+                 <td><button class="btn btn-outline-success" data-toggle="modal" 
+                 data-name="{{$val->name}}" 
+                 data-id="{{$val->id}}" 
+                 data-article_category_id ="{{$val->article_category_id}}" 
+                 data-article_category ="{{$val->ArticleCategory->name}}"
+                 data-volume ="{{$val->volume}}"
+                 data-metric_id ="{{$val->metric_id}}"
+                 data-metric ="{{$val->Metric->name}}"
+                 data-buy_price ="{{$val->buy_price}}"
+                 data-sell_price ="{{$val->sell_price}}"
+                 data-min_sale_qty ="{{$val->min_sale_qty}}"
+                 data-buying="{{$val->buying}}" 
+                 data-selling="{{$val->selling}}" 
+                 data-comments="{{$val->comments}}"  
+                 type="button" 
+                 onClick="triggerModel('{{$val->name}}', '{{$val->id}}',
+                                    '{{$val->article_category_id}}','{{$val->ArticleCategory->name}}',
+                                    '{{$val->volume}}',
+                                    '{{$val->metric_id}}','{{$val->Metric->name}}',
+                                    '{{$val->buy_price}}','{{$val->sell_price}}','{{$val->min_sale_qty}}',
+                                    '{{$val->buying}}','{{$val->selling}}',
+                                    '{{$val->comments}}')" 
+                 data-target="#modal-update">Update</button></td>
                 @if($val->isActive == true)
-                <td><a href="/deletearticalcategory/{{$val->id}}" class="btn btn-outline-danger">Delete</a></td>
+                <td><a href="/deleteartical/{{$val->id}}" class="btn btn-outline-danger">Delete</a></td>
                 @else
-                <td><a href="/activearticalcategory/{{$val->id}}" class="btn btn-outline-primary">Active</a></td>
+                <td><a href="/activeartical/{{$val->id}}" class="btn btn-outline-primary">Active</a></td>
                 @endif
             </tr>
             @endforeach
         </tbody>
     </table>
 
+
 <div class="modal fade" id="modal-update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">articalcategory Update</h4>
+                <h4 class="modal-title w-100 font-weight-bold">Artical Update</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="" method="post" action="/updatearticalcategory" enctype="multipart/form-data">
+                <form id="" method="post" action="/updateartical" enctype="multipart/form-data">
                     {{ csrf_field() }}
+                    <div class="form-group">
+                        <label for="" class="col-form-label">Artical Category Name : </label>
+                        <input type="hidden" class="form-control" id="modelFieldArticle_category_id" value="" name="">
+                         <input type="hidden" class="form-control" id="modelFieldArticle_category" value="" name="">
+                        
+                        <select class="form-control" id="modelcategoryID" name="categoryID"  required>
+                           <option value=""></option>
+                            @foreach($data as $item)                      
+                                <option value="{{$item->id}}">{{$item->name}}</option>                          
+                            @endforeach
+                        </select>
+                    </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">articalcategory Name :</label>
+                        <label for="" class="col-form-label">Artical Name : </label>
                         <input type="text" class="form-control" id="modelFieldName" value="" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-form-label">Volume : </label>
+                        <input type="number" class="form-control" id="modelFieldVolume" value="" name="volume">
+                    </div>
+                     <div class="form-group">
+                        <label for="" class="col-form-label">Metric : </label>
+                        <input type="hidden" class="form-control" id="modelFieldMetric_id" value="" name="">
+                        <input type="hidden" class="form-control" id="modelFieldMetric" value="" name="">
+                          <select class="form-control" name="metricID"  required>
+                                <option value=""></option>
+                                @foreach($metric as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
+                            </select>  
+                    </div>
+                     <div class="form-group">
+                        <label for="" class="col-form-label">Buy Price : </label>
+                        <input type="number" class="form-control" id="modelFieldBuy_price" value="" name="buyprice">
+                    </div>
+                     <div class="form-group">
+                        <label for="" class="col-form-label">Sell Price : </label>
+                        <input type="number" class="form-control" id="modelFieldSell_price" value="" name="sellprice">
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-form-label">Min Sale Qty : </label>
+                        <input type="number" class="form-control" id="modelFieldMin_sale_qty" value="" name="minsale">
                     </div>
                     <div class="form-check offset-3">
                         <input class="form-check-input" type="checkbox" name="buying" id="modelFieldbuying">
@@ -176,14 +238,21 @@
     </div>
 </div>
 
-
-
 @endsection
 
+
 <script>
-    function triggerModel(name, id, buying, selling, comments) {
+    function triggerModel(name, id,article_category_id,article_category,volume,metric_id,metric,buy_price,sell_price,min_sale_qty, buying, selling, comments) {
         document.getElementById("modelFieldName").value = name;
         document.getElementById("modelFieldId").value = id;
+        document.getElementById("modelFieldArticle_category").value = article_category;
+        document.getElementById("modelFieldArticle_category_id").value = article_category_id;
+        document.getElementById("modelFieldVolume").value = volume;
+        document.getElementById("modelFieldMetric_id").value = metric_id;
+        document.getElementById("modelFieldMetric").value = metric;
+        document.getElementById("modelFieldBuy_price").value = buy_price;
+        document.getElementById("modelFieldSell_price").value = sell_price;
+        document.getElementById("modelFieldMin_sale_qty").value = min_sale_qty;
         if (buying == 1) {
             document.getElementById("modelFieldbuying").checked = true;
         } else {
@@ -195,7 +264,16 @@
             document.getElementById("modelFieldselling").checked = false;
         }
         document.getElementById("modelFieldcomments").value = comments;
-    }
 
-});
+        const opts = document.getElementById('modelcategoryID').options;
+        
+        for(opt in opts) {
+            if(opt == article_category_id) {
+                opt.selected = true;
+                console.log(opt)
+            }
+            
+            
+        }
+    }
 </script>

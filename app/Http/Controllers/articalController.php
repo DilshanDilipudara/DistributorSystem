@@ -37,6 +37,42 @@ class articalController extends Controller
 
 
     }
+     //delete
+    public function delete(Request $req)
+    {
+
+        $data = Article::find($req->id);
+        $data->isActive = false;
+        $data->save();
+        return redirect('/artical');
+    }
+    //active
+    public function active(Request $req)
+    {
+        $data = Article::find($req->id);
+        $data->isActive = true;
+        $data->save();
+        return redirect('/artical');
+    }
+
+    //update
+    public function update(Request $req){
+
+       // dd($req);
+        $data =  Article::find($req->id);
+        $data->name     = $req->name;
+        $data->article_category_id  = $req->categoryID;
+        $data->volume   = $req->volume;
+        $data->metric_id = $req->metricID;
+        $data->buy_price = $req->buyprice;
+        $data->sell_price    = $req->sellprice;
+        $data->min_sale_qty  = $req->minsale;
+        $data->buying    = $req->input('buying') ? true : false;
+        $data->selling   = $req->input('selling') ? true : false;
+        $data->comments  = $req->comments;
+        $data->save();
+        return redirect('/artical');
+    }
 
     public function getProdArticles(ArticleCategory $prod){
         $articles = $prod->articles()->with('metric')->get();
