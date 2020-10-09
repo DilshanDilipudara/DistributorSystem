@@ -15,4 +15,11 @@ class Warehouse extends Model
         return $this->belongsTo('App\Article');
 
     }
+
+    /**
+     * One warehouses has one supplier
+     */
+    public function supplier(){
+        return $this->belongsTo('App\Supplier');
+    }
 }

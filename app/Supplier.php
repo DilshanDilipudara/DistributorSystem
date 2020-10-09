@@ -13,5 +13,12 @@ class Supplier extends Model
 
         return $this->belongsToMany('App\ArticleCategory')
             ->withTimestamps();
-    }
+     }
+
+    /**
+     * One suppler has many warehouses
+     */
+     public function warehouses(){
+         return $this->hasMany('App\Warehouse');
+     }
 }
