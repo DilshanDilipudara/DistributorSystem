@@ -40,13 +40,20 @@ Route::get('/activeartical/{id}', 'articalController@active');
 Route::post('/updateartical', 'articalController@update');
 
 
-//metrics
+//suppler
 Route::get('/suppler','supplerController@view');
 Route::post('/addsuppler','supplerController@add');
 Route::get('/deletesuppler/{id}','supplerController@delete');
 Route::get('/activesuppler/{id}', 'supplerController@active');
 Route::post('/updatesuppler','supplerController@update');
-Auth::routes();
+
+
+//warehouse
+Route::get('/warehouse','warehouseController@view');
+Route::post('/addwarehouse','warehouseController@add');
+Route::get('/deletewarehouse/{id}','warehouseController@delete');
+Route::get('/activewarehouse/{id}', 'warehouseController@active');
+Route::post('/updatewarehouse','warehouseController@update');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
