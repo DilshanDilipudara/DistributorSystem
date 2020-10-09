@@ -15,7 +15,7 @@
                 @foreach($category as $item)
                 <option value="{{$item->id}}">{{$item->name}}</option>
                 @endforeach
-         </select> 
+         </select>
       </div>
     </div>
     <div class="form-group row">
@@ -26,7 +26,7 @@
                 @foreach($artical as $item)
                 <option value="{{$item->id}}">{{$item->name}}</option>
                 @endforeach
-         </select> 
+         </select>
       </div>
     </div>
      <div class="form-group row">
@@ -37,7 +37,7 @@
                 @foreach($supplier as $item)
                 <option value="{{$item->id}}">{{$item->name}}</option>
                 @endforeach
-         </select> 
+         </select>
       </div>
     </div>
     <div class="form-group row">
@@ -90,7 +90,7 @@
         </div>
     <div class="offset-6"><button type="submit" class="btn btn-outline-primary">Submit</button></div>
   </form>
-  
+
 </div>
 
 <br>
@@ -130,24 +130,24 @@
         <td>{{$val->buying}}</td>
         <td>{{$val->selling}}</td>
         <td>{{$val->comment}}</td>
-        <td><button class="btn btn-outline-success" data-toggle="modal" 
-        data-id="{{$val->id}}" 
-        data-article_category_id="{{$val->article_category_id}}" 
-        data-article_id = "{{$val->article_id}}" 
-        data-suppler_id ="{{$val->suppler_id}}" 
-        data-date = "{{$val->date}}" 
-        data-order_number = "{{$val->order_number}}" 
-        data-invoice_number = "{{$val->invoice_number}}" 
-        data-price = "{{$val->price}}" 
-        data-quantity = "{{$val->quantity}}" 
-        data-buying = "{{$val->buying}}" 
-        data-selling = "{{$val->selling}}" 
-        data-comment = "{{$val->comment}}" 
+        <td><button class="btn btn-outline-success" data-toggle="modal"
+        data-id="{{$val->id}}"
+        data-article_category_id="{{$val->article_category_id}}"
+        data-article_id = "{{$val->article_id}}"
+        data-suppler_id ="{{$val->suppler_id}}"
+        data-date = "{{$val->date}}"
+        data-order_number = "{{$val->order_number}}"
+        data-invoice_number = "{{$val->invoice_number}}"
+        data-price = "{{$val->price}}"
+        data-quantity = "{{$val->quantity}}"
+        data-buying = "{{$val->buying}}"
+        data-selling = "{{$val->selling}}"
+        data-comment = "{{$val->comment}}"
 
-        type="button" 
+        type="button"
         onClick="triggerModel(
           '{{$val->id}}',
-          '{{$val->article_category_id}}', 
+          '{{$val->article_category_id}}',
           '{{$val->article_id}}',
           '{{$val->suppler_id}}',
           '{{$val->date}}',
@@ -193,7 +193,7 @@
                   @foreach($category as $item)
                       <option value="{{$item->id}}">{{$item->name}}</option>
                   @endforeach
-              </select>  
+              </select>
           </div>
           <div class="form-group">
             <label for="" class="col-form-label">Artical Name : </label>
@@ -203,7 +203,7 @@
                   @foreach($artical as $item)
                       <option value="{{$item->id}}">{{$item->name}}</option>
                   @endforeach
-              </select>  
+              </select>
           </div>
           <div class="form-group">
             <label for="" class="col-form-label">Supplier Name : </label>
@@ -213,7 +213,7 @@
                   @foreach($supplier as $item)
                       <option value="{{$item->id}}">{{$item->name}}</option>
                   @endforeach
-              </select>  
+              </select>
           </div>
            <div class="form-group">
             <label for="" class="col-form-label">Date : </label>
@@ -274,7 +274,7 @@
     console.log(id);
     document.getElementById("mId").value = id;
     document.getElementById("marticle_category_id").value = article_category_id;
-    
+
     document.getElementById("marticle_id").value = article_id;
     document.getElementById("msuppler_id").value = suppler_id;
     document.getElementById("mdate").value = date;

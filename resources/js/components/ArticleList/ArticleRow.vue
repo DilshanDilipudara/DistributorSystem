@@ -1,16 +1,16 @@
 <template>
     <div class="sales_list1" v-bind:class="classDangerObj">
         <div class="sales_list2 p-1 pt-2">
-            {{ ind + 1 }}
+            <p>{{ ind + 1 }}</p>
         </div>
         <div class="sales_list2 p-1 pt-2">
-            {{ article.name }}
+            <p>{{ article.name }}</p>
         </div>
         <div class="sales_list2 p-1 pt-2">
-            {{ article.volume}}{{ article.metric.name }}
+            <p>{{ article.volume}}{{ article.metric.name }}</p>
         </div>
         <div class="sales_list2 p-1 pt-2">
-            {{ article.sell_price }}
+            <p>{{ article.sell_price }}</p>
         </div>
         <div class="sales_list2 p-1 pt-2">
             <input type="text" class="form-control" name="saleQt[]" v-model="saleQt">
@@ -19,16 +19,16 @@
             <input type="text" class="form-control" name="discount[]" v-model="discount">
         </div>
         <div class="sales_list2 p-1 pt-2">
-           {{ disVal }}
+           <p>{{ disVal }}</p>
         </div>
         <div class="sales_list2 p-1 pt-2">
-            {{ totalVal }}
+            <p>{{ totalVal }}</p>
         </div>
         <div class="sales_list2 p-1 pt-2">
             <input type="text" class="form-control" name="freeOffer[]" v-model="freeOffer">
         </div>
         <div class="sales_list2 p-1 pt-2">
-            {{ article.min_sale_qty }}
+            <p>{{ article.min_sale_qty }}</p>
         </div>
         <input type="hidden" name="artID[]" :value="article.id">
         <input type="hidden" name="unitPrice[]" :value="article.sell_price">

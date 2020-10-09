@@ -28,10 +28,10 @@ class CreateShopsTable extends Migration
             $table->string('photo')->nullable();
             $table->string('owner_photo')->nullable();
             $table->boolean('cash')->default(0);
-            $table->boolean('check')->default(0);
+            $table->boolean('cheque')->default(0);
             $table->boolean('credit')->default(0);
-            $table->boolean('approve')->default(0);
-            $table->boolean('isActive')->default(1);
+            $table->boolean('approved')->default(0);
+            $table->boolean('isActive')->default(0);
             $table->timestamps();
 
               $table->foreign('user_id')
