@@ -12,7 +12,7 @@ class metricController extends Controller
     public function view(Request $req){
         $data = Metric::all();
         //dd($data);
-        return view('metrics',compact('data'));
+        return view('/metrics',compact('data'));
     }
     //add
     public function add(Request $req){
