@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../../public/css/three.css">
+    <link rel="stylesheet" href="/css/deliver-pending.css">
     <title>Quick</title>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand text-primary font-weight-bold" href="#" style="font-size: 40px !important;">Add New Sale</a>
+    <a class="navbar-brand text-primary font-weight-bold" href="#" style="font-size: 40px !important;">Deliver Pending</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
+    <!-- <p class="navbar-brand text-primary font-weight-bold text-right">login</p> -->
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 
         <form class="form-inline my-2 my-lg-0 ">
@@ -28,9 +28,8 @@
     </div>
   </nav>
   <section>
-    <p style="font-size: 35px !important;" class="text-center text-info">Page Access : Sales REF</p>
+    <p style="font-size: 35px !important;" class="text-center text-info">Page Access : Sales REF,Manager</p>
   </section>
-
   <section>
     <div class="text3">
       <div class="text2">
@@ -38,72 +37,41 @@
           <div class="row">
             <div class="col-md-12 col-lg-10">
               <div class="form-group row">
-                <label for="inputPassword" class="col-md-12 col-lg-2 col-form-label">Invoice number</label>
-                <div class=" col-lg-10">
-                  <input type="password" class="form-control" id="inputPassword" placeholder="94711466859">
-                </div>
+                  <label for="inputPassword" class="col-sm-12 col-xl-3 col-form-label text-right">Order Date from</label>
+                  <div class="col-sm-12 col-xl-3">
+                    <input type="date" class="form-control" id="inputPassword" placeholder="94711466859">
+                  </div>
+                  <label for="inputPassword" class="col-sm-12 col-xl-1 col-form-label mt-sm-2 mt-xl-0 text-right">To</label>
+                  <div class="col-sm-12 col-xl-3">
+                    <input type="date" class="form-control" id="inputPassword" placeholder="94711466859">
+                  </div>
+                  <div class="col-sm-12 col-xl-2 mt-sm-3 mt-xl-0">
+                    <button type="button" class="btn btn-success">Print summery</button>
+                  </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12 col-lg-10">
-              <div class="form-group row">
-                <label for="inputPassword" class="col-md-12 col-lg-2 col-form-label">Shop name</label>
-                <div class=" col-lg-10">
-                  <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                  <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 col-lg-10">
-              <div class="form-group row">
-                <label for="inputPassword" class="col-md-12 col-lg-2 col-form-label">Date</label>
-                <div class=" col-lg-10">
-                  <input type="date" class="form-control" id="inputPassword">
-                </div>
-              </div>
-            </div>
-          </div>      
-          <div class="row">
-            <div class="col-md-12 col-lg-10">
-              <div class="form-group row">
-                <label for="inputPassword" class="col-md-12 col-lg-2 col-form-label">Product Category</label>
-                <div class=" col-lg-10">
-                  <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>                 
-                </div>
-              </div>
-            </div>
-          </div>       
         </div>
       </div>
     </div>
   </section>
+
 
   <section style="overflow-x: auto !important;" class="mt-4 ml-sm-2 mr-sm-2">
     <div class ="sales_list3">
       <div class="border-bottom border-secondary text1 mb-2" ></div>
       <div class="sales_list1">
-        <div class="sales_list2 bg-secondary p-1 pt-2">#</div>
-        <div class="sales_list2 bg-secondary p-1 pt-2">Article name</div>
-        <div class="sales_list2 bg-secondary p-1 pt-2">Volume</div>
-        <div class="sales_list2 bg-secondary p-1 pt-2">Unit Price</div>
-        <div class="sales_list2 bg-secondary p-1 pt-2">Sale Quantity</div>
-        <div class="sales_list2 bg-secondary p-1 pt-2">Discount</div>
-        <div class="sales_list2 bg-secondary p-1 pt-2">%Value</div>
-        <div class="sales_list2 bg-secondary p-1 pt-2">Total</div>
-        <div class="sales_list2 bg-secondary p-1 pt-2">Free offer</div>
-        <div class="sales_list2 bg-secondary p-1 pt-2">Min qty</div>
+        <div class="sales_list2 bg-secondary p-1 pt-2">Invoice number</div>
+        <div class="sales_list2 bg-secondary p-1 pt-2">Order Date</div>
+        <div class="sales_list2 bg-secondary p-1 pt-2">Deliver Date</div>
+        <div class="sales_list2 bg-secondary p-1 pt-2">Customer</div>
+        <div class="sales_list2 bg-secondary p-1 pt-2">City</div>
+        <div class="sales_list2 bg-secondary p-1 pt-2">Total Amount</div>
+        <div class="sales_list2 bg-secondary p-1 pt-2">Pending amount</div>
+        <div class="sales_list2 bg-secondary p-1 pt-2">Item count</div>
+        <div class="sales_list2 bg-secondary p-1 pt-2">Sales by</div>
+        <div class="sales_list2 bg-secondary p-1 pt-2">Comment</div>
+        <div class="sales_list2 bg-secondary p-1 pt-2">&#160;</div>
       </div>
       <div class="sales_list1">
         <div class="sales_list2 p-1 pt-2">
@@ -136,12 +104,14 @@
         <div class="sales_list2 p-1 pt-2">
           <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
         </div>
-      </div>
+        <div class="sales_list2 p-1 pt-2">
+          <button type="button" class="btn btn-info">Secondary</button>        </div>
+        </div>
       <div class="border-bottom border-secondary text1 mt-2" ></div>
     </div>
   </section>
 
-  <section class="mt-4 pt-4">
+  <!-- <section class="mt-4 pt-4">
     <div class="text3">
       <div class="text2">
         <div class="text1">
@@ -167,15 +137,15 @@
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
                     <label class="form-check-label" for="inlineCheckbox2">Cheque</label>
-                  </div>  
+                  </div>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
                     <label class="form-check-label" for="inlineCheckbox3">Credit</label>
-                  </div>               
+                  </div>
                 </div>
               </div>
             </div>
-          </div>  
+          </div>
           <div class="row">
             <div class="col-md-12 col-lg-10">
               <div class="form-group row">
@@ -205,11 +175,11 @@
                 </div>
               </div>
             </div>
-          </div>            
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 <script src="js/index.js"></script>
 <!-- <script async>(function(w, d) { w.CollectId = "5eece54b36abf135dba4e56e"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>     -->
 <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>

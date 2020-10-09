@@ -73,4 +73,10 @@ class articalController extends Controller
         $data->save();
         return redirect('/artical');
     }
+
+    public function getProdArticles(ArticleCategory $prod){
+        $articles = $prod->articles()->with('metric')->get();
+
+        return $articles;
+    }
 }
