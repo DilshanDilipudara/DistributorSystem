@@ -13,7 +13,10 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return Shop::all();
+        return Shop::where([
+            ['approved', '=',  1],
+            ['isActive', '=', 1]
+        ])->get();
     }
 
     /**
@@ -80,5 +83,28 @@ class ShopController extends Controller
     public function destroy(Shop $shop)
     {
         //
+    }
+
+    public function getReviewShops()
+    {
+        $shops =  Shop::where([
+            ['approved', '=',  0],
+            ['isActive', '=', 0]
+        ])->get();
+
+        return view('ui-sec-2.review-shop', compact('shops'));
+    }
+
+    public function approveShop(Request $request) {
+//        dd($request);
+        $shop_id = $request->shopID;
+        $appr = 'approval_' . $shop_id;
+        $approval = $request->$appr;
+
+        $shop = Shop::find($shop_id);
+        $shop->approved = $approval;
+        $shop->save();
+        return redirect()->route('view-review-shops');
+
     }
 }
