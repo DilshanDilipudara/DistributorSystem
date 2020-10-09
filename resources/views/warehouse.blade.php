@@ -130,7 +130,37 @@
         <td>{{$val->buying}}</td>
         <td>{{$val->selling}}</td>
         <td>{{$val->comment}}</td>
-        <td><button class="btn btn-outline-success" data-toggle="modal" data-article_category_id="{{$val->article_category_id}}" data-id="{{$val->id}}" type="button" onClick="triggerModel('{{$val->article_category_id}}', '{{$val->id}}')" data-target="#modal-update">Update</button></td>
+        <td><button class="btn btn-outline-success" data-toggle="modal" 
+        data-id="{{$val->id}}" 
+        data-article_category_id="{{$val->article_category_id}}" 
+        data-article_id = "{{$val->article_id}}" 
+        data-suppler_id ="{{$val->suppler_id}}" 
+        data-date = "{{$val->date}}" 
+        data-order_number = "{{$val->order_number}}" 
+        data-invoice_number = "{{$val->invoice_number}}" 
+        data-price = "{{$val->price}}" 
+        data-quantity = "{{$val->quantity}}" 
+        data-buying = "{{$val->buying}}" 
+        data-selling = "{{$val->selling}}" 
+        data-comment = "{{$val->comment}}" 
+
+        type="button" 
+        onClick="triggerModel(
+          '{{$val->id}}',
+          '{{$val->article_category_id}}', 
+          '{{$val->article_id}}',
+          '{{$val->suppler_id}}',
+          '{{$val->date}}',
+          '{{$val->order_number}}',
+          '{{$val->invoice_number}}',
+          '{{$val->price}}',
+          '{{$val->quantity}}',
+          '{{$val->buying}}',
+          '{{$val->selling}}',
+          '{{$val->comment}}'
+          )"
+
+           data-target="#modal-update">Update</button></td>
         @if($val->isActive == true)
           <td><a href="/deletewarehouse/{{$val->id}}" class="btn btn-outline-danger">Delete</a></td>
         @else
@@ -146,20 +176,83 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Metrics Update</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Warehouse Update</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form id="" method="post" action="/updatemetrics" enctype="multipart/form-data">
+        <form id="" method="post" action="/updatewarehouse" enctype="multipart/form-data">
           {{ csrf_field() }}
 
           <div class="form-group">
-            <label for="" class="col-form-label">Metrics Name:</label>
-            <input type="text" class="form-control" id="modelFieldName" value="" name="name">
+            <label for="" class="col-form-label">Artical Category Name : </label>
+             <input type="hidden" class="form-control" id="marticle_category_id" value="" name="">
+              <select class="form-control" name="categoryID"  required>
+                  <option value=""></option>
+                  @foreach($category as $item)
+                      <option value="{{$item->id}}">{{$item->name}}</option>
+                  @endforeach
+              </select>  
           </div>
-          <input id="modelFieldId" type="hidden" class="form-control" name="id" value="">
+          <div class="form-group">
+            <label for="" class="col-form-label">Artical Name : </label>
+            <input type="hidden" class="form-control" id="marticle_id" value="" name="">
+            <select class="form-control" name="articleID"  required>
+                  <option value=""></option>
+                  @foreach($artical as $item)
+                      <option value="{{$item->id}}">{{$item->name}}</option>
+                  @endforeach
+              </select>  
+          </div>
+          <div class="form-group">
+            <label for="" class="col-form-label">Supplier Name : </label>
+            <input type="hidden" class="form-control" id="msuppler_id" value="" name="">
+            <select class="form-control" name="suppler_id"  required>
+                  <option value=""></option>
+                  @foreach($supplier as $item)
+                      <option value="{{$item->id}}">{{$item->name}}</option>
+                  @endforeach
+              </select>  
+          </div>
+           <div class="form-group">
+            <label for="" class="col-form-label">Date : </label>
+            <input type="date" class="form-control" id="mdate" value="" name="date">
+          </div>
+           <div class="form-group">
+            <label for="" class="col-form-label">Bid ID/Order Number : </label>
+            <input type="text" class="form-control" id="morder_number" value="" name="order_number">
+          </div>
+           <div class="form-group">
+            <label for="" class="col-form-label">Invoice Number : </label>
+            <input type="text" class="form-control" id="minvoice_number" value="" name="invoice_number">
+          </div>
+          <div class="form-group">
+            <label for="" class="col-form-label">Total Price : </label>
+            <input type="text" class="form-control" id="mprice" value="" name="price">
+          </div>
+          <div class="form-group">
+            <label for="" class="col-form-label">Quantity : </label>
+            <input type="text" class="form-control" id="mquantity" value="" name="qty">
+          </div>
+          <div class="form-check offset-3">
+              <input class="form-check-input" type="checkbox" name="buying" id="mbuying">
+              <label class=" form-check-label" for="defaultCheck1">
+                  : Buying
+              </label>
+          </div>
+          <div class="form-check offset-3">
+              <input class="form-check-input" type="checkbox" name="selling" id="mselling">
+              <label class="form-check-label" for="defaultCheck1">
+                  : Selling
+              </label>
+          </div>
+
+          <div class="form-group ">
+              <label for="" class="col-form-label"> Comments:</label>
+              <textarea type="text" class="form-control" id="mcomment" value="" name="comments"></textarea>
+          </div>
+          <input id="mId" type="hidden" class="form-control" name="id" value="">
           <div class="modal-footer">
             <div class="text-center">
               <button type="submit" class="btn btn-primary "> Save </button>
@@ -177,8 +270,29 @@
 @endsection
 
 <script>
-  function triggerModel(name, id) {
-    document.getElementById("modelFieldName").value = name;
-    document.getElementById("modelFieldId").value = id;
+  function triggerModel(id,article_category_id,article_id,suppler_id,date,order_number,invoice_number,price,quantity,buying,selling,comment) {
+    console.log(id);
+    document.getElementById("mId").value = id;
+    document.getElementById("marticle_category_id").value = article_category_id;
+    
+    document.getElementById("marticle_id").value = article_id;
+    document.getElementById("msuppler_id").value = suppler_id;
+    document.getElementById("mdate").value = date;
+    document.getElementById("morder_number").value = order_number;
+    document.getElementById("minvoice_number").value = invoice_number;
+    document.getElementById("mprice").value = price;
+    document.getElementById("mquantity").value = quantity;
+
+     if (buying == 1) {
+            document.getElementById("mbuying").checked = true;
+        } else {
+            document.getElementById("mbuying").checked = false;
+        }
+        if (selling == 1) {
+            document.getElementById("mselling").checked = true;
+        } else {
+            document.getElementById("mselling").checked = false;
+        }
+        document.getElementById("mcomment").value = comment;
   }
 </script>
