@@ -15,7 +15,6 @@ class CreateSuppliersTable extends Migration
     {
         Schema::create('suppliers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('article_category_id');
             $table->string('name');
             $table->string('street')->nullable();
             $table->string('city')->nullable();
@@ -26,11 +25,6 @@ class CreateSuppliersTable extends Migration
             $table->string('comments')->nullable();
             $table->boolean('isActive')->default(1);
             $table->timestamps();
-
-             $table->foreign('article_category_id')
-                ->references('id')->on('article_categories')
-                ->onUpdate('cascade')
-                ->onDelete('restrict');
         });
     }
 

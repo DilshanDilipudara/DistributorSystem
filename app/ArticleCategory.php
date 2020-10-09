@@ -19,7 +19,7 @@ class ArticleCategory extends Model
      */
     public function suppliers(){
 
-        return $this->belongsToMany('App\Suppliers')
+        return $this->belongsToMany('App\Supplier')
             ->withTimestamps();
     }
 }
