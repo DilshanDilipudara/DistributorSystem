@@ -29,7 +29,7 @@ class warehouseController extends Controller
 
         //dd($req);
         $data = new warehouse;
-        $data->article_category_id = $req->categoryID;
+        //$data->article_category_id = $req->categoryID;
         $data->article_id  = $req->articalID;
         $data->suppler_id  = $req->supplierID;
         $data->date  = $req->date;
@@ -62,8 +62,18 @@ class warehouseController extends Controller
     //update
     public function update(Request $req){
         //dd($req);
-       $data =  warehouse::find($req->id);
-       $data->name = $req->name;
+        $data =  warehouse::find($req->id);
+       //$data->article_category_id = $req->categoryID;
+        $data->article_id  = $req->articleID;
+        $data->suppler_id  = $req->suppler_id;
+        $data->date  = $req->date;
+        $data->order_number  = $req->order_number;
+        $data->invoice_number = $req->invoice_number;
+        $data->price = $req->price;
+        $data->quantity  = $req->qty;
+        $data->buying    = $req->input('buying') ? true : false;
+        $data->selling   = $req->input('selling') ? true : false;
+        $data->comment  = $req->comments;
        $data->save();
        return redirect('/warehouse');
     }
