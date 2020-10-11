@@ -98,7 +98,11 @@
       @foreach($suppler as $val)
       <tr>
         <th scope="row">{{$val->id}}</th>
-        <td>{{$val->article_category_id}}</td>
+        @forelse($val->articleCategories as $category )
+         <td>{{$category->name}}</td>
+         @empty
+         <td></td>
+        @endforelse
         <td>{{$val->name}}</td>
         <td>{{$val->street}}</td>
         <td>{{$val->city}}</td>

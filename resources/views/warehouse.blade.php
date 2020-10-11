@@ -10,7 +10,7 @@
     <div class="form-group row">
       <label for="inputmetrics" class="col-sm-2 col-form-label">Article Category</label>
       <div class="col-sm-10">
-        <select class="form-control" id="categoryID" name="categoryID"  required>
+        <select class="form-control" id="categoryID" name="categoryID"  onchange="return showcategory('categoryID');" required>
                 <option ></option>
                 @foreach($category as $item)
                 <option value="{{$item->id}}">{{$item->name}}</option>
@@ -23,9 +23,7 @@
       <div class="col-sm-10">
          <select class="form-control" id="articalID" name="articalID"  required>
                 <option ></option>
-                @foreach($artical as $item)
-                <option value="{{$item->id}}">{{$item->name}}</option>
-                @endforeach
+               
          </select>
       </div>
     </div>
@@ -266,7 +264,6 @@
 </div>
 
 
-
 @endsection
 
 <script>
@@ -295,4 +292,35 @@
         }
         document.getElementById("mcomment").value = comment;
   }
+
+function showcategory(categoryID){
+  
+  var elmSelect = document.getElementById('categoryID');
+  var pi = parseInt(elmSelect.value);
+ // console.log(pi);
+
+  var el = <?php echo json_encode($artical); ?>;
+  //filter array element
+  const result = el.filter(res => res.article_category_id == pi)
+  
+  //bind artical name
+  document.getElementById('articalID').innerText = null;
+  var option = document.createElement("option");
+  option.value = null;
+  option.text = "";
+  articalID.add(option);
+  result.forEach(element =>{
+   // console.log(element.id,element.name)
+    var option = document.createElement("option");
+    option.value = element.id;
+    option.text = element.name;
+    articalID.add(option);
+    
+  });
+
+
+   
+}
+
+ 
 </script>
