@@ -56,6 +56,9 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ url('/rolechange') }}">User Details </a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url('/profile') }}">Profile </a>
+                    </li>
                 </ul>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

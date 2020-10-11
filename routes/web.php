@@ -61,6 +61,9 @@ Route::get('/deleterole/{id}','roleChange@delete');
 Route::get('/activerole/{id}', 'roleChange@active');
 Route::post('/updaterole','roleChange@update');
 
+//Profile
+Route::get('/profile','profile@view');
+Route::post('/updateprofile','profile@update');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
