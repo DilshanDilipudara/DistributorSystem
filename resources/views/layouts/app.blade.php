@@ -53,6 +53,9 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('view-review-shops') }}">Review Shops </a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url('/rolechange') }}">User Details </a>
+                    </li>
                 </ul>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
