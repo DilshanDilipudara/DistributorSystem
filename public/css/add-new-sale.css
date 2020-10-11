@@ -31,8 +31,8 @@ body {
         margin-left: auto;
         margin-right:auto;
     }
-
 }
+
 @media (min-width: 760px) {
     .text1{
         display: flex !important;
@@ -45,6 +45,7 @@ body {
         margin-right: auto;
     }
 }
+
 @media (min-width: 960px) {
     .text1{
         display: flex !important;
@@ -58,6 +59,7 @@ body {
     }
 
 }
+
 @media (min-width: 1400px) {
     .sales_list2{
         width: 10%;

@@ -119,9 +119,9 @@
       @foreach($warehouse as $val)
       <tr>
         <th scope="row">{{$val->id}}</th>
-        <td>{{$val->article_category_id}}</td>
-        <td>{{$val->article_id}}</td>
-        <td>{{$val->suppler_id}}</td>
+        <td>{{$val->article->articleCategory->name}}</td>
+        <td>{{$val->article->name}}</td>
+        <td>{{$val->supplier->name}}</td>
         <td>{{$val->date}}</td>
         <td>{{$val->order_number}}</td>
         <td>{{$val->invoice_number}}</td>
@@ -132,7 +132,7 @@
         <td>{{$val->comment}}</td>
         <td><button class="btn btn-outline-success" data-toggle="modal"
         data-id="{{$val->id}}"
-        data-article_category_id="{{$val->article_category_id}}"
+        data-article_category_id="{{$val->article->articleCategory->id}}"
         data-article_id = "{{$val->article_id}}"
         data-suppler_id ="{{$val->suppler_id}}"
         data-date = "{{$val->date}}"
@@ -147,7 +147,7 @@
         type="button"
         onClick="triggerModel(
           '{{$val->id}}',
-          '{{$val->article_category_id}}',
+          '{{$val->article->articleCategory->id}}',
           '{{$val->article_id}}',
           '{{$val->suppler_id}}',
           '{{$val->date}}',
