@@ -18,6 +18,7 @@ class CreateShopsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('owner_name');
+            $table->boolean('civil_status')->default(1);
             $table->string('nic')->unique()->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('address')->nullable();
