@@ -72,5 +72,4 @@ Route::post('/add-new-sale', 'InvoiceController@addNewSale')->name('add-new-sale
 Route::post('/approve-shop', 'ShopController@approveShop')->name('approve-shop');
 
 
-
 Route::resource('shops', 'ShopController');

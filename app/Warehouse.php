@@ -8,9 +8,9 @@ class Warehouse extends Model
 {
 
     /**
-     * One warehouses has one articles
+     * One warehouses has one article
      */
-    public function articles(){
+    public function article(){
 
         return $this->belongsTo('App\Article');
 

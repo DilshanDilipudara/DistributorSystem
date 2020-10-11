@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -54,12 +55,12 @@ class ShopController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Shop  $shop
-     * @return \Illuminate\Http\Response
+     * @param \App\Shop $shop
+     * @return \Illuminate\View\View
      */
     public function edit(Shop $shop)
     {
-        //
+        return view('ui-sec-2.shop-profile', compact('shop'));
     }
 
     /**
@@ -67,11 +68,34 @@ class ShopController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Shop  $shop
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Shop $shop)
     {
-        //
+        $shop->name = $request->name;
+        $shop->owner_name = $request->ownerName;
+        $shop->civil_status = $request->status;
+        $shop->nic = $request->nic;
+        $shop->email = $request->email;
+        $shop->address = $request->address;
+        $shop->city = $request->city;
+        $shop->tel_mobile = $request->mobile;
+        $shop->tel_business = $request->mobBis;
+        $shop->business_id_num = $request->businessID;
+        $shop->isActive = $request->activeState;
+
+
+        if( request('owner_image')) {
+            $ownerImagePath = request('owner_image')->store('shop_profile');
+            $shop->photo = $ownerImagePath;
+        }
+        if( request('shop_image') ) {
+            $shopImagePath = request('shop_image')->store('shop_profile');
+            $shop->owner_photo = $shopImagePath;
+        }
+
+        $shop->save();
+
+        return redirect()->route('add-new-sale');
     }
 
     /**
