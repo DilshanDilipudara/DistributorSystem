@@ -54,6 +54,9 @@
                         <a class="nav-link" href="{{ route('view-review-shops') }}">Review Shops </a>
                     </li>
                     <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('shops.create') }}">Add Shops </a>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="{{ url('/rolechange') }}">User Details </a>
                     </li>
                     <li class="nav-item active">
