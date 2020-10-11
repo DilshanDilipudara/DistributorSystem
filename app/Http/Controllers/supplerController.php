@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Supplier;
 use App\ArticleCategory;
+use App\article_category_supplier;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,6 @@ class supplerController extends Controller
         //dd($req);
         $suppler = new Supplier;
         $suppler->name = $req->name;
-        $suppler->article_category_id  = $req->categoryID;
         $suppler->street  = $req->street;
         $suppler->city = $req->city;
         $suppler->telephone = $req->tel;
@@ -31,6 +31,8 @@ class supplerController extends Controller
         $suppler->reg_no = $req->regno;
         $suppler->comments = $req->comments;
         $suppler->save();
+
+        $suppler->articleCategories()->attach($req->categoryID);
         return redirect('/suppler');  
     }
     //delete
