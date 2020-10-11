@@ -13,8 +13,8 @@ class supplerController extends Controller
      //view
     public function view(Request $req){
         $artical_category  = ArticleCategory::where('isActive',true)->orderBy('name')->get();
-        $suppler = Supplier::all();
-        //dd($data);
+        $suppler = Supplier::with('articleCategories')->get();
+        //dd($suppler);
         return view('/suppler', compact('artical_category','suppler'));
     }
     //add
