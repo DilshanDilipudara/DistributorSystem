@@ -55,6 +55,12 @@ Route::get('/deletewarehouse/{id}','warehouseController@delete');
 Route::get('/activewarehouse/{id}', 'warehouseController@active');
 Route::post('/updatewarehouse','warehouseController@update');
 
+//change Role
+Route::get('/rolechange','roleChange@view');
+Route::get('/deleterole/{id}','roleChange@delete');
+Route::get('/activerole/{id}', 'roleChange@active');
+Route::post('/updaterole','roleChange@update');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
