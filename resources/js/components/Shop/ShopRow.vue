@@ -10,15 +10,15 @@
         <div class="sales_list2 p-1 pt-2"><p>{{ shop.tel_business }}</p></div>
         <div class="sales_list2 p-1 pt-2"><p>{{ shop.business_id_num }}</p></div>
         <div class="sales_list2 p-1 pt-2">
-            <button class="btn btn-outline-dark" type="button" @click=showUpdateModel>Update</button>
+            <button class="btn btn-outline-dark" type="button" @click=showUpdateModal>Update</button>
         </div>
         <div class="sales_list2 p-1 pt-2">
-            <button class="btn btn-outline-danger" type="button" onclick="">Delete</button>
+            <button class="btn btn-outline-danger" type="button" @click="showDeleteModal">Delete</button>
         </div>
         <div v-if="!shop.isActive" class="sales_list2 p-1 pt-2" >
             <form :action="'/shops/' + shop.id + '/submit'" method="post">
                 <input id="tokenInp" type="hidden" name="_token" :value="csrf_token">
-                <button class="btn btn-outline-primary" type="submit">Sent</button>
+                <button class="btn btn-outline-primary" type="submit">Send</button>
             </form>
         </div>
         <div v-else-if="shop.approved" class="sales_list2 p-1 pt-2">
@@ -41,12 +41,12 @@
         },
 
         methods: {
-            showUpdateModel() {
-                this.$emit('show-up-model', this.index);
+            showUpdateModal() {
+                this.$emit('show-up-modal', this.index);
             },
 
-            showDeleteModel() {
-
+            showDeleteModal() {
+                this.$emit('show-del-modal', this.index);
             }
         },
         mounted() {

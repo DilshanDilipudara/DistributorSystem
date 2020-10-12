@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Shop;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -144,11 +145,23 @@ class ShopController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Shop  $shop
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Shop $shop)
     {
-        //
+        if($shop->approved) {
+            $shop->isActive = 0;
+            $shop->save();
+        }
+        else {
+            try {
+                $shop->delete();
+            }
+            catch (\Exception $e) {
+                return \response($e->getMessage(), 500);
+            }
+        }
+
+        return redirect()->route('shops.create');
     }
 
     public function getShops2Review()

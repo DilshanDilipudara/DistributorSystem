@@ -86,6 +86,66 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['shop'],
+  data: function data() {
+    return {
+      csrf_token: ''
+    };
+  },
+  mounted: function mounted() {
+    var csMeta = document.querySelector('meta[name=\'csrf-token\']');
+    this.csrf_token = csMeta.getAttribute('content');
+  },
+  created: function created() {
+    document.body.style.overflow = 'hidden';
+  },
+  destroyed: function destroyed() {
+    document.body.style.overflow = 'auto';
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Shop/ShopList.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Shop/ShopList.vue?vue&type=script&lang=js& ***!
@@ -97,6 +157,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ShopRow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ShopRow */ "./resources/js/components/Shop/ShopRow.vue");
 /* harmony import */ var _ShopUpdateModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ShopUpdateModal */ "./resources/js/components/Shop/ShopUpdateModal.vue");
+/* harmony import */ var _ShopDeleteModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ShopDeleteModal */ "./resources/js/components/Shop/ShopDeleteModal.vue");
 //
 //
 //
@@ -104,24 +165,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     ShopRow: _ShopRow__WEBPACK_IMPORTED_MODULE_0__["default"],
-    ShopUpdateModal: _ShopUpdateModal__WEBPACK_IMPORTED_MODULE_1__["default"]
+    ShopUpdateModal: _ShopUpdateModal__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ShopDeleteModal: _ShopDeleteModal__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
       shops: [],
       modaledShop: {},
-      upModalShowing: false
+      upModalShowing: false,
+      delModalShowing: false
     };
   },
   methods: {
-    showUpdateModel: function showUpdateModel(args) {
+    showUpdateModal: function showUpdateModal(args) {
       this.modaledShop = this.shops[args];
       this.upModalShowing = true;
+    },
+    showDeleteModal: function showDeleteModal(args) {
+      this.modaledShop = this.shops[args];
+      this.delModalShowing = true;
     }
   },
   created: function created() {
@@ -186,10 +258,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    showUpdateModel: function showUpdateModel() {
-      this.$emit('show-up-model', this.index);
+    showUpdateModal: function showUpdateModal() {
+      this.$emit('show-up-modal', this.index);
     },
-    showDeleteModel: function showDeleteModel() {}
+    showDeleteModal: function showDeleteModal() {
+      this.$emit('show-del-modal', this.index);
+    }
   },
   mounted: function mounted() {
     var csMeta = document.querySelector('meta[name=\'csrf-token\']');
@@ -341,6 +415,25 @@ __webpack_require__.r(__webpack_exports__);
     document.body.style.overflow = 'auto';
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=style&index=0&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.modal-open {\n    overflow-x: hidden;\n    overflow-y: auto;\n}\n.fade {\n    background: rgba(80, 80, 80, 0.5);\n}\n@media (min-width: 576px) {\n.modal-dialog {\n        max-width: 600px;\n}\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -840,6 +933,36 @@ process.umask = function() { return 0; };
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./ShopDeleteModal.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
 
 /***/ }),
 
@@ -1457,6 +1580,126 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=template&id=52ba5dc4&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=template&id=52ba5dc4& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal-open modal fade show",
+      staticStyle: { display: "block", opacity: "1" }
+    },
+    [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-header text-center" }, [
+            _c("h4", { staticClass: "modal-title w-100 font-weight-bold" }, [
+              _vm._v("Update Shop")
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.$emit("delete-modal")
+                  }
+                }
+              },
+              [_c("span", [_vm._v("×")])]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              attrs: {
+                action: "/shops/" + _vm.shop.id,
+                method: "post",
+                enctype: "multipart/form-data"
+              }
+            },
+            [
+              _c("div", { staticClass: "modal-body" }, [
+                _c("input", {
+                  attrs: { id: "tokenInp", type: "hidden", name: "_token" },
+                  domProps: { value: _vm.csrf_token }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    id: "methodInp",
+                    type: "hidden",
+                    name: "_method",
+                    value: "DELETE"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("p", [
+                    _vm._v(
+                      "Are you sure want to delete " +
+                        _vm._s(_vm.shop.name) +
+                        " ?"
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c("div", { staticClass: "text-center" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("Delete")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.$emit("close-modal")
+                        }
+                      }
+                    },
+                    [_vm._v("Close")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Shop/ShopList.vue?vue&type=template&id=7acde0f2&":
 /*!****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Shop/ShopList.vue?vue&type=template&id=7acde0f2& ***!
@@ -1479,7 +1722,10 @@ var render = function() {
         return _c("shop-row", {
           key: shop.id,
           attrs: { shop: shop, index: index },
-          on: { "show-up-model": _vm.showUpdateModel }
+          on: {
+            "show-up-modal": _vm.showUpdateModal,
+            "show-del-modal": _vm.showDeleteModal
+          }
         })
       }),
       _vm._v(" "),
@@ -1489,6 +1735,17 @@ var render = function() {
             on: {
               "close-modal": function($event) {
                 _vm.upModalShowing = false
+              }
+            }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.delModalShowing
+        ? _c("shop-delete-modal", {
+            attrs: { shop: _vm.modaledShop },
+            on: {
+              "close-modal": function($event) {
+                _vm.delModalShowing = false
               }
             }
           })
@@ -1562,13 +1819,23 @@ var render = function() {
         {
           staticClass: "btn btn-outline-dark",
           attrs: { type: "button" },
-          on: { click: _vm.showUpdateModel }
+          on: { click: _vm.showUpdateModal }
         },
         [_vm._v("Update")]
       )
     ]),
     _vm._v(" "),
-    _vm._m(0),
+    _c("div", { staticClass: "sales_list2 p-1 pt-2" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-outline-danger",
+          attrs: { type: "button" },
+          on: { click: _vm.showDeleteModal }
+        },
+        [_vm._v("Delete")]
+      )
+    ]),
     _vm._v(" "),
     !_vm.shop.isActive
       ? _c("div", { staticClass: "sales_list2 p-1 pt-2" }, [
@@ -1592,7 +1859,7 @@ var render = function() {
                   staticClass: "btn btn-outline-primary",
                   attrs: { type: "submit" }
                 },
-                [_vm._v("Sent")]
+                [_vm._v("Send")]
               )
             ]
           )
@@ -1620,23 +1887,7 @@ var render = function() {
         ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "sales_list2 p-1 pt-2" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-danger",
-          attrs: { type: "button", onclick: "" }
-        },
-        [_vm._v("Delete")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -14478,6 +14729,93 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./resources/js/components/Shop/ShopDeleteModal.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/Shop/ShopDeleteModal.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ShopDeleteModal_vue_vue_type_template_id_52ba5dc4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ShopDeleteModal.vue?vue&type=template&id=52ba5dc4& */ "./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=template&id=52ba5dc4&");
+/* harmony import */ var _ShopDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ShopDeleteModal.vue?vue&type=script&lang=js& */ "./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _ShopDeleteModal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ShopDeleteModal.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _ShopDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ShopDeleteModal_vue_vue_type_template_id_52ba5dc4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ShopDeleteModal_vue_vue_type_template_id_52ba5dc4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Shop/ShopDeleteModal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ShopDeleteModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopDeleteModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=style&index=0&lang=css&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopDeleteModal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./ShopDeleteModal.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopDeleteModal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopDeleteModal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopDeleteModal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopDeleteModal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopDeleteModal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=template&id=52ba5dc4&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=template&id=52ba5dc4& ***!
+  \*****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopDeleteModal_vue_vue_type_template_id_52ba5dc4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ShopDeleteModal.vue?vue&type=template&id=52ba5dc4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Shop/ShopDeleteModal.vue?vue&type=template&id=52ba5dc4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopDeleteModal_vue_vue_type_template_id_52ba5dc4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShopDeleteModal_vue_vue_type_template_id_52ba5dc4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Shop/ShopList.vue":
 /*!***************************************************!*\
   !*** ./resources/js/components/Shop/ShopList.vue ***!
@@ -14725,7 +15063,7 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/user/Desktop/blog/resources/js/shop-create.js */"./resources/js/shop-create.js");
+module.exports = __webpack_require__(/*! /workspace/Docs/4y1s/dilshan/DistributorSystem/resources/js/shop-create.js */"./resources/js/shop-create.js");
 
 
 /***/ })

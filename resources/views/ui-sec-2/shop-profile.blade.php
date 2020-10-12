@@ -10,6 +10,8 @@
         <h2 class="col-md-12 text-center"> Shop Profile</h2>
     </section>
 
+{{--    <img src="https://scontent.fcmb1-1.fna.fbcdn.net/v/t1.0-9/51823967_982398138622009_3306740710404784128_o.jpg?_nc_cat=104&_nc_sid=8bfeb9&_nc_ohc=Rr1WG8ScEUQAX_wJ1Hy&_nc_ht=scontent.fcmb1-1.fna&oh=298b86807a8a603b7b4cef8404ca6ae2&oe=5FA924DD" alt="Girl in a jacket">--}}
+
     <section>
         <form action="{{ route('shops.update', ['shop' => $shop->id]) }}" method="post">
             @method('PATCH')
