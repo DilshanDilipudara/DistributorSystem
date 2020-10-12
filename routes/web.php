@@ -18,6 +18,23 @@ Route::get('/', function () {
 Route::get('/salegraph', function () {
     return view('salegraph');
 });
+Route::get('/Expenses', function () {
+    return view('Expenses');
+});
+
+Route::get('/transportExpenses', function () {
+    return view('transportExpenses');
+});
+
+
+Route::get('/saleStatic', function () {
+    return view('saleStatic');
+});
+
+
+Route::get('/monthlyStatic', function () {
+    return view('monthlyStatic');
+});
 
 Auth::routes();
 
