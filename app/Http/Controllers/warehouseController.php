@@ -11,6 +11,9 @@ use App\Metric;
 use App\Warehouse;
 use App\Supplier;
 
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
 class warehouseController extends Controller
 {
     //
@@ -21,7 +24,7 @@ class warehouseController extends Controller
         $category = ArticleCategory::where('isActive',true)->orderBy('name')->get();
         $artical  = Article::where('isActive',true)->orderBy('name')->get();
         $supplier  = Supplier::where('isActive',true)->orderBy('name')->get();
-        //dd($data);
+       
         return view('/warehouse',compact('data','warehouse','category','artical','supplier'));
     }
     //add
@@ -31,7 +34,7 @@ class warehouseController extends Controller
         $data = new warehouse;
         //$data->article_category_id = $req->categoryID;
         $data->article_id  = $req->articalID;
-        $data->suppler_id  = $req->supplierID;
+        $data->supplier_id   = $req->supplierID;
         $data->date  = $req->date;
         $data->order_number  = $req->bidID;
         $data->invoice_number = $req->invoice;
@@ -65,7 +68,7 @@ class warehouseController extends Controller
         $data =  warehouse::find($req->id);
        //$data->article_category_id = $req->categoryID;
         $data->article_id  = $req->articleID;
-        $data->suppler_id  = $req->suppler_id;
+        $data->supplier_id   = $req->suppler_id;
         $data->date  = $req->date;
         $data->order_number  = $req->order_number;
         $data->invoice_number = $req->invoice_number;
@@ -76,5 +79,12 @@ class warehouseController extends Controller
         $data->comment  = $req->comments;
        $data->save();
        return redirect('/warehouse');
+    }
+
+    public function supcate(Request $res){
+      
+        $sup = ArticleCategory::find($res->categoryID)->suppliers()->get()->toArray();
+         
+         return response()->json(array('sup'=> $sup), 200);
     }
 }
