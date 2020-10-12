@@ -19,8 +19,8 @@ class CreateShopsTable extends Migration
             $table->string('name');
             $table->string('owner_name');
             $table->boolean('civil_status')->default(1);
-            $table->string('nic')->unique()->nullable();
-            $table->string('email')->unique()->nullable();
+            $table->string('nic')->nullable();
+            $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('tel_mobile')->nullable();

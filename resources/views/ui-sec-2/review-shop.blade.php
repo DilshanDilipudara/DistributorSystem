@@ -39,7 +39,7 @@
             <div class="mt-2 text-border"></div>
         </div>
         @foreach($shops as $shop)
-            <form action="{{ route('approve-shop') }}" method="post">
+            <form action="{{ route('approve-shop', [ 'shop' => $shop->id ]) }}" method="post">
                 @csrf
                 <div class="text3">
                     <div class="text2">
@@ -105,7 +105,6 @@
                                 Looks good!
                             </div>
                         </div>
-                        <input type="hidden" name="shopID" value="{{ $shop->id }}">
                         <div class="text1 justify-content-center">
                             <label for="validationTooltip02">&#160;</label>
                             <div>
