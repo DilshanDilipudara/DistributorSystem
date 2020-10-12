@@ -16,7 +16,7 @@ class CreateWarehousesTable extends Migration
         Schema::create('warehouses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('article_id');
-            $table->unsignedBigInteger('suppler_id');
+            $table->unsignedBigInteger('supplier_id');
             $table->date('date')->nullable();
             $table->string('order_number')->nullable();
             $table->string('invoice_number')->nullable();
@@ -33,7 +33,7 @@ class CreateWarehousesTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
-            $table->foreign('suppler_id')
+            $table->foreign('supplier_id')
                 ->references('id')->on('suppliers')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
