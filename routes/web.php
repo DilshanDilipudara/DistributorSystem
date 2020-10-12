@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/salegraph', function () {
+    return view('salegraph');
+});
+
 Auth::routes();
 
 //metrics

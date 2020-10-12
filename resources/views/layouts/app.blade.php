@@ -10,10 +10,12 @@
     <title>{{ config('app.name', 'Mountain') }}</title>
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <!-- Scripts -->
-
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -24,10 +26,12 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <a class="navbar-brand" href="{{ url('/') }}">Mountain Tea</a>
+        @auth
         <div class="container">
 
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
+
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ url('/metrics') }}">Metrics </a>
                     </li>
@@ -60,10 +64,14 @@
                         <a class="nav-link" href="{{ url('/rolechange') }}">User Details </a>
                     </li>
                     <li class="nav-item active">
+                        <a class="nav-link" href="{{ url('/salegraph') }}">Sale Graph </a>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="{{ url('/profile') }}">Profile </a>
                     </li>
                 </ul>
             </div>
+            @endauth
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
