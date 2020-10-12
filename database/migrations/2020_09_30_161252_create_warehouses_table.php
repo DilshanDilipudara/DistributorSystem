@@ -33,7 +33,7 @@ class CreateWarehousesTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
-            $table->foreign('suppler_id')
+            $table->foreign('supplier_id')
                 ->references('id')->on('suppliers')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
