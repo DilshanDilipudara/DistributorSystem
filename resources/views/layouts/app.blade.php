@@ -66,6 +66,27 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ url('/salegraph') }}">Sale Graph </a>
                     </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Expenses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ url('/Expenses') }}">Expenses</a>
+                            <a class="dropdown-item" href="{{ url('/transportExpenses') }}">Transport Expenses</a>
+                        </div>
+                    </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Static
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ url('/saleStatic') }}">Sale Static</a>
+                            <a class="dropdown-item" href="{{ url('/monthlyStatic') }}">Monthly Static</a>
+                        </div>
+                    </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ url('/profile') }}">Profile </a>
                     </li>
