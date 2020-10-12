@@ -64,6 +64,7 @@ class supplerController extends Controller
         $suppler->reg_no = $req->reg_no;
         $suppler->comments = $req->comments;
         $suppler->save();
+        $suppler->articleCategories()->attach($req->categoryID);
        return redirect('/suppler');
     }
 

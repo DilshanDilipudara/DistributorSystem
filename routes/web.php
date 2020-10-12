@@ -55,6 +55,8 @@ Route::get('/deletewarehouse/{id}','warehouseController@delete');
 Route::get('/activewarehouse/{id}', 'warehouseController@active');
 Route::post('/updatewarehouse','warehouseController@update');
 
+Route::get('/supcategory','warehouseController@supcate');
+ 
 //change Role
 Route::get('/rolechange','roleChange@view');
 Route::get('/deleterole/{id}','roleChange@delete');

@@ -32,9 +32,7 @@
       <div class="col-sm-10">
         <select class="form-control" id="supplierID" name="supplierID"  required>
                 <option ></option>
-                @foreach($supplier as $item)
-                <option value="{{$item->id}}">{{$item->name}}</option>
-                @endforeach
+            
          </select>
       </div>
     </div>
@@ -317,9 +315,33 @@ function showcategory(categoryID){
     articalID.add(option);
     
   });
+  $.ajax({
+          type:'get',
+          url:'/supcategory',    
+          data: {
+              "_token": "{{ csrf_token() }}",
+               "categoryID" : pi
+              },
+          success:function(data) {
+            //console.log(data.sup)
+            document.getElementById('supplierID').innerText = null;
+            var option = document.createElement("option");
+            option.value = null;
+            option.text = "";
+            supplierID.add(option);
+           // console.log(data.sup);
+            data.sup.forEach(element =>{
+             //console.log(element.id,element.name)
+              var option = document.createElement("option");
+              option.value = element.id;
+              option.text = element.name;
+              supplierID.add(option);
+              
+            });
+          }
+      });
+     
 
-
-   
 }
 
  
