@@ -19,7 +19,7 @@ class staticController extends Controller
         $artical  = Article::where('isActive',true)->orderBy('name')->get()->unique('name');
         $data = null;
         $metrics = null;
-        return view('/saleStatic',compact('category','artical','data',));
+        return view('/saleStatic',compact('category','artical','data','metrics'));
 
     }
 

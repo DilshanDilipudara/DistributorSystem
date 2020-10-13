@@ -2,11 +2,11 @@
 
 @section('content')
 
-<section class="pt-3">
-        <div class="container">
-            <h2 class=" border-primary offset-5">Sales Monthly Static</h2>
-            <div class="pt-5 pl-5 pr-5">
-                    <form action="/monthsale" method="post">
+
+ <section>
+      <div class="container-lg mb-4">
+        <h1 class="text-center pt-4 font-weight-bold">Monthly Artical Sale Graph</h1>
+         <form action="/monthsale" method="post">
                           @csrf
                         <div class="form-group row">                       
                                 <label for="sales_from" class="col-sm-2 col-form-label">Month</label>
@@ -42,41 +42,108 @@
                                 <button type="hidden" class="btn btn-secondary">XLS Expert</button> -->
                             </div>
                         </div>
-                    </form>  
-            </div>
-        </div>
-        <br>
-        <div class="pt-2 container-md">
-            <table class="table">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Artical Name</th>
-                    <th scope="col">Month</th>
-                    <th scope="col">Unit Price</th>
-                    <th scope="col">Total Sale Qty</th>
-                    <th scope="col">Total Sale Price</th>
-                    <th scope="col">Metric</th>
-                </tr>
-                </thead>
-                <tbody>
-            @if($data != null)
-               @foreach($data as $val)
-                <tr> 
-                    <td>{{$metrics->name}}</td>
-                    <td> {{ $month }} </td>
-                    <td>{{$val->unit_price}}</td>
-                    <td>{{$val->total_qty}}</td>
-                    <td>{{$val->total_sales}}</td> 
-                    <td>{{$metrics->Metric->name}}</td>       
-                </tr>
+                    </form> 
+      </div><br>
 
-             @endforeach
-            @endif
-               
-                </tbody>
-            </table>
-        </div>
+      <div class="container-lg">
+        <canvas id="myChart" style="height:100vh !important;"></canvas>
+      </div>
+  
+      <script>
+        var ctx = document.getElementById('myChart');
+  
+        Chart.defaults.global.defaultFontColor = 'gray';
+  
+        var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
+          datasets: [{
+              label: '# of sold Articles',
+              data: [50, 19, 300, 50, 20, 3],
+              fill: false,
+              lineTension: 0,
+              borderColor:'crimson',
+              // pointRadius: 1,
+          }]
+      },
+      options:{
+        title:{
+          display:true,
+          text:'Number of sold Articles per day',
+          fontSize:25,
+          fontColor:'black'
+        },
+        legend:{
+          position:'top',
+          labels:{
+            fontColor:'#000'
+          }
+        },
+        layout:{
+          padding:{
+            left:0,
+            right:0,
+            bottom:20,
+            top:10
+          }
+        },
+        tooltips:{
+          enabled:true
+        },
+        scales:{
+                  yAxes: [
+                    {
+                      scaleLabel: {
+                      display: true,
+                      labelString: "Qty",
+                      fontSize:18
+                      },
+                      gridLines: {
+                        display: true ,
+                        color: "black"
+                      // borderColor:''
+                      // zeroLineColor: '#ffcc33'
+                      },
+                      ticks: {
+                      fontColor: "gray", // this here
+                      }
+                    },
+                  ],
+                  xAxes: [
+                    {
+                      scaleLabel: {
+                      display: true,
+                      labelString: "Day",
+                      fontSize:18
+                    },
+                      gridLines: {
+                        display: true ,
+                        color: "black"
+                      },
+                      ticks: {
+                      fontColor: "gray", // this here
+                      }
+              },
+            ],
+        },
+      }
+      });
+  
+      </script>
     </section>
+
+
+
+
+
+
+ 
+@endsection
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script>
 
 
 <script>
@@ -108,6 +175,4 @@ function showcategory(categoryID){
 
 </script>
 
-
-
-@endsection
+</script>

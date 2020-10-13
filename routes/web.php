@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/salegraph', function () {
-    return view('salegraph');
-});
+
+//month_artical_sales_graph
+Route::get('/month_artical_sales_graph', 'Article_Sale_Graph@view');
 
 
 
