@@ -13,7 +13,7 @@ class articalController extends Controller
 {
     public function view(Request $req){
         $data  = ArticleCategory::where('isActive',true)->orderBy('name')->get();
-        $metric = Metric::where('isActive',true)->orderBy('name')->get();
+        $metric = Metric::where('isActive',true)->orderBy('name')->get()->unique('name');
         $artcalData = Article::all();
         //dd($data);
         return view('/artical', compact('data','metric','artcalData'));
