@@ -24,12 +24,12 @@ class CreateExpensesTable extends Migration
             $table->boolean('isTransport')->default(0);
 
             $table->foreign('expense_type_id')
-                ->references('id')->on('expense_type')
+                ->references('id')->on('expense_types')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
             $table->foreign('vehicle_type_id')
-                ->references('id')->on('vehicle_type')
+                ->references('id')->on('vehicle_types')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
         });
