@@ -16,12 +16,22 @@ class CreateExpensesTable extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('date');
-            $table->string('expense_type');
             $table->string('description')->nullable();
-            $table->string('vehicle_type')->nullable();
+            $table->unsignedBigInteger('expense_type_id');
+            $table->unsignedBigInteger('vehicle_type_id')->nullable();
             $table->integer('cost')->nullable();
             $table->string('comment')->nullable();
             $table->boolean('isTransport')->default(0);
+
+            $table->foreign('expense_type_id')
+                ->references('id')->on('expense_type')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
+
+            $table->foreign('vehicle_type_id')
+                ->references('id')->on('vehicle_type')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
         });
     }
 
