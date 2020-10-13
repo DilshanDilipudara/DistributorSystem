@@ -4,7 +4,7 @@
 
 <section class="pt-3">
         <div class="container">
-            <h2 class=" border-primary offset-5">Sales Date statistic</h2>
+            <h2 class=" border-primary offset-5">Sales Day statistic</h2>
             <div class="pt-5 pl-5 pr-5">
                     <form action="/showsalestatic" method="post">
                           @csrf

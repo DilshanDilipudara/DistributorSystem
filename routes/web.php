@@ -42,6 +42,9 @@ Route::get('/deletemetrics/{id}','metricController@delete');
 Route::get('/activemetrics/{id}', 'metricController@active');
 Route::post('/updatemetrics','metricController@update');
 
+
+
+
 //Artical Category
 Route::get('/articalcategory', 'articalcategoryController@view');
 Route::post('/addarticalcategory', 'articalcategoryController@add');
@@ -84,6 +87,14 @@ Route::post('/updaterole','roleChange@update');
 //Profile
 Route::get('/profile','profile@view');
 Route::post('/updateprofile','profile@update');
+
+
+//Expense Type
+Route::get('/expensetype','expenseTypeController@view');
+Route::post('/addexpensetype','expenseTypeController@add');
+Route::get('/deleteexpensetype/{id}','expenseTypeController@delete');
+Route::get('/activeexpensetype/{id}', 'expenseTypeController@active');
+Route::post('/updateexpensetype','expenseTypeController@update');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

@@ -73,6 +73,7 @@
                             Expenses
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ url('/expensetype') }}">Expenses Type</a>
                             <a class="dropdown-item" href="{{ url('/Expenses') }}">Expenses</a>
                             <a class="dropdown-item" href="{{ url('/transportExpenses') }}">Transport Expenses</a>
                         </div>
