@@ -26,15 +26,12 @@ Route::get('/transportExpenses', function () {
     return view('transportExpenses');
 });
 
+//sale static
+Route::get('/saleStatic', 'staticController@view');
+Route::post('/showsalestatic','staticController@showSale');
 
-Route::get('/saleStatic', function () {
-    return view('saleStatic');
-});
-
-
-Route::get('/monthlyStatic', function () {
-    return view('monthlyStatic');
-});
+Route::get('/monthlyStatic', 'staticController@viewmonth');
+Route::post('/monthsale','staticController@showMonth');
 
 Auth::routes();
 
