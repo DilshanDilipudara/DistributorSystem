@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class LoginController extends Controller
 {
@@ -41,6 +44,21 @@ class LoginController extends Controller
     public function username()
     {
         return 'username';
+    }
+
+    public function loggedOut(Request $request)
+    {
+        return redirect()->route('login');
+    }
+
+    public function authenticated(Request $request, $user)
+    {
+        if(!($user->isActive === 1)){
+            Auth::logout();
+            return redirect()->route('login')->withErrors(['username' => 'These credentials do not match our records.']);
+        }
+        else
+            redirect()->route('view-new-sale');
     }
 
 }

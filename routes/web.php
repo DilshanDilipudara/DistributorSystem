@@ -70,7 +70,7 @@ Route::get('/activewarehouse/{id}', 'warehouseController@active');
 Route::post('/updatewarehouse','warehouseController@update');
 
 Route::get('/supcategory','warehouseController@supcate');
- 
+
 //change Role
 Route::get('/rolechange','roleChange@view');
 Route::get('/deleterole/{id}','roleChange@delete');
@@ -115,7 +115,7 @@ Route::get('/sec-2/add-new-sale', 'InvoiceController@index')->name('view-new-sal
 Route::view('/sec-2/deliver-pending', 'ui-sec-2/deliver-pending')->name('view-deliver-pending');
 Route::view('/sec-2/pending-order-summery', 'ui-sec-2/pending-order-summery')->name('view-pending-order-summery');
 Route::get('/sec-2/review-shops', 'ShopController@getShops2Review')->name('view-review-shops');
-Route::view('/sec-2/shop-profile', 'ui-sec-2/shop-profile')->name('view-shop-profile');
+//Route::view('/sec-2/shop-profile', 'ui-sec-2/shop-profile')->name('view-shop-profile');
 Route::view('/sec-2/transaction-pool', 'ui-sec-2/transaction-pool')->name('view-transaction-pool');
 
 Route::get('/prod-cat/{prod}/articles', 'articalController@getProdArticles')->name('get-prod-art');
