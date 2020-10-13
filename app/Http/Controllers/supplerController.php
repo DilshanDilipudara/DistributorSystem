@@ -55,7 +55,7 @@ class supplerController extends Controller
        // dd($req);
         $suppler =  Supplier::find($req->id);
         $suppler->name = $req->name;
-        $suppler->article_category_id  = $req->categoryID;
+      //  $suppler->article_category_id  = $req->categoryID;
         $suppler->street  = $req->street;
         $suppler->city = $req->city;
         $suppler->telephone = $req->tel;
@@ -64,7 +64,7 @@ class supplerController extends Controller
         $suppler->reg_no = $req->reg_no;
         $suppler->comments = $req->comments;
         $suppler->save();
-        $suppler->articleCategories()->attach($req->categoryID);
+        $suppler->articleCategories()->sync($req->categoryID);
        return redirect('/suppler');
     }
 

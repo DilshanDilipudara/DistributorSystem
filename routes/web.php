@@ -26,11 +26,9 @@ Route::get('/transportExpenses', function () {
     return view('transportExpenses');
 });
 
-
-Route::get('/saleStatic', function () {
-    return view('saleStatic');
-});
-
+//sale static
+Route::get('/saleStatic', 'staticController@view');
+Route::post('/showsalestatic','staticController@showSale');
 
 Route::get('/monthlyStatic', function () {
     return view('monthlyStatic');

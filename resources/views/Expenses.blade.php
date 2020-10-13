@@ -2,7 +2,7 @@
 
 @section('content')
 
- <section>
+
       <h1 class="text-center p-3 text-light" style="background-color: rgba(63, 138, 63, 0.924);">Expenses</h1>
       <div class="container-md">
         <div class="pt-5 pl-3 pr-3">
@@ -93,8 +93,6 @@
           </table>
         </div>
       </div>
-    </section>
-
 
 
 
