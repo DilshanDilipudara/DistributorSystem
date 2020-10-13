@@ -60,12 +60,8 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('shops.create') }}">Add Shops </a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ url('/rolechange') }}">User Details </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ url('/salegraph') }}">Sale Graph </a>
-                    </li>
+                    
+  
                     
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -73,7 +69,8 @@
                             Expenses
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{{ url('/expensetype') }}">Expenses Type</a>
+                            <a class="dropdown-item" href="{{ url('/vehicle') }}">Vehicle </a>
+                            <a class="dropdown-item" href="{{ url('/ExpenseType') }}">Expenses Type</a>
                             <a class="dropdown-item" href="{{ url('/Expenses') }}">Expenses</a>
                             <a class="dropdown-item" href="{{ url('/transportExpenses') }}">Transport Expenses</a>
                         </div>
@@ -87,6 +84,12 @@
                             <a class="dropdown-item" href="{{ url('/saleStatic') }}">Sale Static</a>
                             <a class="dropdown-item" href="{{ url('/monthlyStatic') }}">Monthly Static</a>
                         </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url('/salegraph') }}">Sale Graph </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url('/rolechange') }}">User </a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ url('/profile') }}">Profile </a>

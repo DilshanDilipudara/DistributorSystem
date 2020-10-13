@@ -90,11 +90,19 @@ Route::post('/updateprofile','profile@update');
 
 
 //Expense Type
-Route::get('/expensetype','expenseTypeController@view');
+Route::get('/ExpenseType','expenseTypeController@view');
 Route::post('/addexpensetype','expenseTypeController@add');
 Route::get('/deleteexpensetype/{id}','expenseTypeController@delete');
 Route::get('/activeexpensetype/{id}', 'expenseTypeController@active');
 Route::post('/updateexpensetype','expenseTypeController@update');
+
+
+//Expense Type
+Route::get('/vehicle','vehicleController@view');
+Route::post('/addvehicle','vehicleController@add');
+Route::get('/deletevehicle/{id}','vehicleController@delete');
+Route::get('/activevehicle/{id}', 'vehicleController@active');
+Route::post('/updatevehicle','vehicleController@update');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
