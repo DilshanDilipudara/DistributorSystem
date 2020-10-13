@@ -22,7 +22,8 @@ class CreateExpensesTable extends Migration
             $table->integer('cost')->nullable();
             $table->string('comment')->nullable();
             $table->boolean('isTransport')->default(0);
-
+            $table->timestamps();
+            
             $table->foreign('expense_type_id')
                 ->references('id')->on('expense_types')
                 ->onUpdate('cascade')

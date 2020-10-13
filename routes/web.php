@@ -18,13 +18,9 @@ Route::get('/', function () {
 Route::get('/salegraph', function () {
     return view('salegraph');
 });
-Route::get('/Expenses', function () {
-    return view('Expenses');
-});
 
-Route::get('/transportExpenses', function () {
-    return view('transportExpenses');
-});
+
+
 
 //sale static
 Route::get('/saleStatic', 'staticController@view');
@@ -84,6 +80,33 @@ Route::post('/updaterole','roleChange@update');
 //Profile
 Route::get('/profile','profile@view');
 Route::post('/updateprofile','profile@update');
+
+
+//Expense Type
+Route::get('/ExpenseType','expenseTypeController@view');
+Route::post('/addexpensetype','expenseTypeController@add');
+Route::get('/deleteexpensetype/{id}','expenseTypeController@delete');
+Route::get('/activeexpensetype/{id}', 'expenseTypeController@active');
+Route::post('/updateexpensetype','expenseTypeController@update');
+
+
+//Vechile 
+Route::get('/vehicle','vehicleController@view');
+Route::post('/addvehicle','vehicleController@add');
+Route::get('/deletevehicle/{id}','vehicleController@delete');
+Route::get('/activevehicle/{id}', 'vehicleController@active');
+Route::post('/updatevehicle','vehicleController@update');
+
+//Expense
+Route::get('/Expenses','ExpensesController@view');
+Route::post('/addExpenses','ExpensesController@add');
+Route::post('/updateExpenses','ExpensesController@update');
+
+//Transport Expense
+Route::get('/transportExpenses','TrasportExpensesController@view');
+Route::post('/addTrasportExpenses','TrasportExpensesController@add');
+Route::post('/updateTrasportExpenses','TrasportExpensesController@update');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
