@@ -13859,7 +13859,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /workspace/Docs/4y1s/dilshan/DistributorSystem/resources/js/add-new-sale.js */"./resources/js/add-new-sale.js");
+module.exports = __webpack_require__(/*! /home/user/Desktop/blog/resources/js/add-new-sale.js */"./resources/js/add-new-sale.js");
 
 
 /***/ })
