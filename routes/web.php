@@ -30,9 +30,8 @@ Route::get('/transportExpenses', function () {
 Route::get('/saleStatic', 'staticController@view');
 Route::post('/showsalestatic','staticController@showSale');
 
-Route::get('/monthlyStatic', function () {
-    return view('monthlyStatic');
-});
+Route::get('/monthlyStatic', 'staticController@viewmonth');
+Route::post('/monthsale','staticController@showMonth');
 
 Auth::routes();
 
