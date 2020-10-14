@@ -16,7 +16,10 @@ class InvoiceController extends Controller
 
     public function index()
     {
-        $shops = Shop::select('id', 'name')->where('isActive', '1')->get();
+        $shops = Shop::select('id', 'name', 'cash', 'credit', 'cheque')->where([
+            ['isActive', 1],
+            ['approved', 1]
+        ])->get();
         $prod_cat = ArticleCategory::select('id', 'name')->where('isActive', '1')->get();
 
         return view('ui-sec-2/add-new-sale', compact('shops', 'prod_cat'));
@@ -27,7 +30,7 @@ class InvoiceController extends Controller
         $inv = new Invoice;
         $inv->number = $request->invNum;
         $inv->date = $request->invDate;
-        $inv->shop_id = $request->shopID;
+        $inv->shop_id = $request->shop->id;
         $inv->user_id = auth()->user()->id;
         $inv->total = $request->total;
         $inv->discount = $request->discount;

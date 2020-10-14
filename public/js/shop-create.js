@@ -15063,7 +15063,7 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/user/Desktop/blog/resources/js/shop-create.js */"./resources/js/shop-create.js");
+module.exports = __webpack_require__(/*! /workspace/Docs/4y1s/dilshan/DistributorSystem/resources/js/shop-create.js */"./resources/js/shop-create.js");
 
 
 /***/ })
