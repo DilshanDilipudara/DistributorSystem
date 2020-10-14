@@ -15,11 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/salegraph', function () {
+    return view('salegraph');
+});
+
 
 //month_artical_sales_graph
 Route::get('/month_artical_sales_graph', 'Article_Sale_Graph@view');
 Route::post('/addmonth_artical_sales_graph', 'Article_Sale_Graph@show_graph');
 
+//Year_artical_sales_graph
+Route::get('/year_artical_sale_graph', 'Article_Sale_Graph@view_year');
+Route::post('/addmonth_artical_sale_graph', 'Article_Sale_Graph@show_graph_year');
 
 
 

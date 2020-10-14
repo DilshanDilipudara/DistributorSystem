@@ -119,4 +119,96 @@ class Article_Sale_Graph extends Controller
 
     }
 
+
+    public function view_year(){
+
+        $date =  \Carbon\Carbon::now();    
+        $year =  date("Y", strtotime($date));
+       
+       
+       $startDayofYear =   \Carbon\Carbon::parse($date)->startOfYear()->toDateString();
+       $lastDayofYear =    \Carbon\Carbon::parse($date)->endOfYear()->toDateString();
+  
+      
+       $data = DB::table('article_invoice as ai')
+                ->join('invoices as a','ai.invoice_id','=','a.id')
+                ->whereDate('a.date','>=',$startDayofYear )
+                ->whereDate('a.date','<=',$lastDayofYear )
+                ->select(DB::raw('Month(a.date) as month'),DB::raw('SUM(ai.sale_qty) as total_qty'))    
+                ->groupBy('month')           
+                ->get();
+    
+       $y_axis = array();
+       $mon = 12;
+       $val = -1;
+       $key = -1;
+       for( $i = 0 ; $i<$mon; $i++){
+            
+            if(isset($data[$i]->month)){
+                        $val = $data[$i]->month;
+                        $key = $i;
+                }
+          if($val == $i+1){ 
+            
+            $y_axis[] = $data[$key]->total_qty;
+               
+           }
+           else{
+                $y_axis[] = 0;
+           }
+       }
+   
+        $category  = ArticleCategory::where('isActive',true)->orderBy('name')->get()->unique('name');
+        $artical  = Article::where('isActive',true)->orderBy('name')->get()->unique('name');
+        
+        return view('/year_artical_sale_graph',compact('category','artical','y_axis'));
+    }
+
+    public function show_graph_year(Request $req){
+       
+        $date = $req->date;
+        $year =  date("Y", strtotime($date));
+        $artical_id = $req->articalID;
+        $category_id = $req->categoryID;
+       
+       $startDayofYear =   \Carbon\Carbon::parse($date)->startOfYear()->toDateString();
+       $lastDayofYear =    \Carbon\Carbon::parse($date)->endOfYear()->toDateString();
+  
+      
+       $data = DB::table('article_invoice as ai')
+                ->join('invoices as a','ai.invoice_id','=','a.id')
+                ->where('ai.article_id','=',$artical_id)
+                ->whereDate('a.date','>=',$startDayofYear )
+                ->whereDate('a.date','<=',$lastDayofYear )
+                ->select(DB::raw('Month(a.date) as month'),DB::raw('SUM(ai.sale_qty) as total_qty'))    
+                ->groupBy('month')           
+                ->get();
+    
+       $y_axis = array();
+       $mon = 12;
+       $val = -1;
+       $key = -1;
+       for( $i = 0 ; $i<$mon; $i++){
+            
+            if(isset($data[$i]->month)){
+                        $val = $data[$i]->month;
+                        $key = $i;
+                }
+          if($val == $i+1){ 
+            
+            $y_axis[] = $data[$key]->total_qty;
+               
+           }
+           else{
+                $y_axis[] = 0;
+           }
+       }
+   
+    $category  = ArticleCategory::where('isActive',true)->orderBy('name')->get()->unique('name');
+    $artical  = Article::where('isActive',true)->orderBy('name')->get()->unique('name');
+
+     return view('/year_artical_sale_graph',compact('category','artical','y_axis'));
+
+    }
+
 }
