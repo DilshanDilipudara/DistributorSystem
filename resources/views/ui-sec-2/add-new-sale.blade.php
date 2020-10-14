@@ -37,10 +37,11 @@
                                             name</label>
                                         <div class="col-lg-10">
                                             <label class="mr-sm-2 sr-only" for="shopSelect">Preference</label>
-                                            <select class="custom-select mr-sm-2" id="shopSelect" name="shopID">
+                                            <select class="custom-select mr-sm-2" id="shopSelect" name="shop"
+                                                    v-model="shop">
                                                 <option selected value="0">Choose...</option>
                                                 @foreach($shops as $shop)
-                                                    <option value="{{ $shop->id }}">{{ $shop->name }}</option>
+                                                    <option value="{{ $shop }}">{{ $shop->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -124,6 +125,7 @@
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="cashCheckbox"
                                                        name="cashTaken"
+                                                       :disabled="cashNotAllowed"
                                                        v-model="cashTaken">
                                                 <label class="form-check-label"
                                                        for="cashCheckbox">Cash(>2000.00)</label>
@@ -131,12 +133,14 @@
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="chequeCheckbox"
                                                        name="chequeTaken"
+                                                       :disabled="chequeNotAllowed"
                                                        v-model="chequeTaken">
                                                 <label class="form-check-label" for="chequeCheckbox">Cheque</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="creditCheckbox"
                                                        name="creditTaken"
+                                                       :disabled="creditNotAllowed"
                                                        v-model="creditTaken">
                                                 <label class="form-check-label" for="creditCheckbox">Credit</label>
                                             </div>

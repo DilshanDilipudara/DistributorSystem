@@ -13688,9 +13688,24 @@ Vue.component('article-list', __webpack_require__(/*! ./components/ArticleList/A
 var app = new Vue({
   el: '#app',
   data: {
+    shop: "{}",
     cashTaken: false,
     creditTaken: false,
     chequeTaken: false
+  },
+  computed: {
+    selectedShop: function selectedShop() {
+      return JSON.parse(this.shop);
+    },
+    cashNotAllowed: function cashNotAllowed() {
+      return this.selectedShop.cash === 0;
+    },
+    chequeNotAllowed: function chequeNotAllowed() {
+      return this.selectedShop.cheque === 0;
+    },
+    creditNotAllowed: function creditNotAllowed() {
+      return this.selectedShop.credit === 0;
+    }
   }
 });
 
@@ -13859,7 +13874,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/user/Desktop/blog/resources/js/add-new-sale.js */"./resources/js/add-new-sale.js");
+module.exports = __webpack_require__(/*! /workspace/Docs/4y1s/dilshan/DistributorSystem/resources/js/add-new-sale.js */"./resources/js/add-new-sale.js");
 
 
 /***/ })
