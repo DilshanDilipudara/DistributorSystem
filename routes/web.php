@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 //month_artical_sales_graph
 Route::get('/month_artical_sales_graph', 'Article_Sale_Graph@view');
+Route::post('/addmonth_artical_sales_graph', 'Article_Sale_Graph@show_graph');
 
 
 

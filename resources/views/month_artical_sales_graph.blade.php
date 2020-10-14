@@ -6,7 +6,7 @@
  <section>
       <div class="container-lg mb-4">
         <h1 class="text-center pt-4 font-weight-bold">Monthly Artical Sale Graph</h1>
-         <form action="/monthsale" method="post">
+         <form action="/addmonth_artical_sales_graph" method="post">
                           @csrf
                         <div class="form-group row">                       
                                 <label for="sales_from" class="col-sm-2 col-form-label">Month</label>
@@ -51,16 +51,18 @@
   
       <script>
         var ctx = document.getElementById('myChart');
+        var x =  JSON.parse("{{ json_encode($x_axis) }}");
+        var y = JSON.parse("{{ json_encode($y_axis) }}");
   
         Chart.defaults.global.defaultFontColor = 'gray';
   
         var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
+          labels: x,
           datasets: [{
               label: '# of sold Articles',
-              data: [50, 19, 300, 50, 20, 3],
+              data: y,
               fill: false,
               lineTension: 0,
               borderColor:'crimson',
@@ -70,7 +72,7 @@
       options:{
         title:{
           display:true,
-          text:'Number of sold Articles per day',
+          text:'Number of sold Articles per day without free issue',
           fontSize:25,
           fontColor:'black'
         },
@@ -143,8 +145,6 @@
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script>
-
 
 <script>
 
@@ -152,10 +152,11 @@ function showcategory(categoryID){
 
     var elmSelect = document.getElementById('categoryID');
     var pi = parseInt(elmSelect.value);
+
     var el = <?php echo json_encode($artical); ?>;
     //el.forEach(e =>{console.log(e)});
     const result = el.filter(res => res.article_category_id == pi)
-  
+    
   //bind artical name
   document.getElementById('articalID').innerText = null;
   var option = document.createElement("option");
@@ -175,4 +176,3 @@ function showcategory(categoryID){
 
 </script>
 
-</script>
