@@ -16,7 +16,7 @@
             <input type="text" class="form-control" name="saleQt[]" v-model="saleQt">
         </div>
         <div class="sales_list2 p-1 pt-2">
-            <input type="text" class="form-control" name="discount[]" v-model="discount">
+            <input type="text" class="form-control" name="discounts[]" v-model="discount">
         </div>
         <div class="sales_list2 p-1 pt-2">
            <p>{{ disVal }}</p>
