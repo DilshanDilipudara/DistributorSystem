@@ -93,7 +93,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{ url('/month_artical_sales_graph') }}">Monthly Artical </a>
                             <a class="dropdown-item" href="{{ url('/year_artical_sale_graph') }}">Yearly Artical </a>
-                            <a class="dropdown-item" href="{{ url('') }}">Monthly Artical Category </a>
+                            <a class="dropdown-item" href="{{ url('/month_artical_category_graph') }}">Monthly Artical Category </a>
                             <a class="dropdown-item" href="{{ url('') }}">Yearly Artical Category</a>
                         </div>
                     </li>
