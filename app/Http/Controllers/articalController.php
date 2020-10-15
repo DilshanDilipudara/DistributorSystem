@@ -11,6 +11,11 @@ use App\Metric;
 
 class articalController extends Controller
 {
+     public function __construct()
+        {
+            $this->middleware('auth');
+        }
+
     public function view(Request $req){
         $data  = ArticleCategory::where('isActive',true)->orderBy('name')->get();
         $metric = Metric::where('isActive',true)->orderBy('name')->get()->unique('name');

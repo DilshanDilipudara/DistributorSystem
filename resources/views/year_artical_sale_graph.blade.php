@@ -2,11 +2,11 @@
 
 @section('content')
 
-<section class="pt-3">
-        <div class="container">
-            <h2 class=" border-primary offset-5">Sales Monthly Static</h2>
-            <div class="pt-5 pl-5 pr-5">
-                    <form action="/monthsale" method="post">
+
+ <section>
+      <div class="container-lg mb-4">
+        <h1 class="text-center pt-4 font-weight-bold">Yealy Artical Sale Graph</h1>
+         <form action="/addmonth_artical_sale_graph" method="post">
                           @csrf
                         <div class="form-group row">                       
                                 <label for="sales_from" class="col-sm-2 col-form-label">Month</label>
@@ -42,42 +42,93 @@
                                 <button type="hidden" class="btn btn-secondary">XLS Expert</button> -->
                             </div>
                         </div>
-                    </form>  
-            </div>
-        </div>
-        <br>
-        <div class="pt-2 container-md">
-            <table class="table">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Artical Name</th>
-                    <th scope="col">Month</th>
-                    <th scope="col">Unit Price</th>
-                    <th scope="col">Total Sale Qty</th>
-                    <th scope="col">Total Sale Price</th>
-                    <th scope="col">Metric</th>
-                </tr>
-                </thead>
-                <tbody>
-            @if($data != null)
-               @foreach($data as $val)
-                <tr> 
-                    <td>{{$metrics->name}}</td>
-                    <td> {{ $month }} </td>
-                    <td>{{$val->unit_price}}</td>
-                    <td>{{$val->total_qty}}</td>
-                    <td>{{$val->total_sales}}</td> 
-                    <td>{{$metrics->Metric->name}}</td>       
-                </tr>
+                    </form> 
+      </div><br>
 
-             @endforeach
-            @endif
-               
-                </tbody>
-            </table>
-        </div>
+      <div class="container-lg">
+        <canvas id="canva_artical" style="height:100vh !important;"></canvas>
+      </div>
+    <br>
+      <span class="pl-2 offset-6">&#160;&#160;&#160;</span>
+      <button type="button" onclick="PrintImage();" class="btn btn-Success">Print</button>
+      
+ <script>
+        var ctx = document.getElementById('canva_artical');
+  
+        Chart.defaults.global.defaultFontColor = 'gray';
+        
+        var y = <?php echo json_encode($y_axis); ?>;
+        var print_month = <?php echo json_encode($printmonth); ?>;
+        
+        var canva_artical = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ["January","February","March","April","May","June","July","August","September","October","November","December"],
+          datasets: [{
+              label: '# of sold Articles',
+              data: y,
+              fill: false,
+              lineTension: 0,
+              borderColor:'#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6),
+          }]
+      },
+      options:{
+        title:{
+          display:true,
+          text:'Number of Sold Articles per Month - '+ print_month,
+          fontSize:25,
+          fontColor:'black'
+        },
+        legend:{
+          position:'top',
+          labels:{
+            fontColor:'#000'
+          }
+        },
+        layout:{
+          padding:{
+            left:0,
+            right:0,
+            bottom:20,
+            top:10
+          }
+        },
+        tooltips:{
+          enabled:true
+        },
+        scales:{
+                  yAxes: [
+                    {
+                      scaleLabel: {
+                      display: true,
+                      labelString: "Qty",
+                      fontSize:18
+                      },
+                    },
+                  ],
+                  xAxes: [
+                    {
+                      scaleLabel: {
+                      display: true,
+                      labelString: "Month",
+                      fontSize:18
+                },
+              },
+            ],
+          },
+      }
+      });
+  
+      </script>
     </section>
 
+
+
+ 
+@endsection
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
 <script>
 
@@ -85,10 +136,11 @@ function showcategory(categoryID){
 
     var elmSelect = document.getElementById('categoryID');
     var pi = parseInt(elmSelect.value);
+
     var el = <?php echo json_encode($artical); ?>;
     //el.forEach(e =>{console.log(e)});
     const result = el.filter(res => res.article_category_id == pi)
-  
+    
   //bind artical name
   document.getElementById('articalID').innerText = null;
   var option = document.createElement("option");
@@ -108,6 +160,15 @@ function showcategory(categoryID){
 
 </script>
 
+<script>
 
+function PrintImage() {
+    var canvas = document.getElementById("canva_artical");
+    var win = window.open();
+    win.document.write("<br><img src='" + canvas.toDataURL() + "'/>");
+    win.print();
+    win.location.reload();
 
-@endsection
+}
+
+</script>

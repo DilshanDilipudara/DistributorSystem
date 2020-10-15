@@ -20,7 +20,21 @@ Route::get('/salegraph', function () {
 });
 
 
+//month_artical_sales_graph
+Route::get('/month_artical_sales_graph', 'Article_Sale_Graph@view');
+Route::post('/addmonth_artical_sales_graph', 'Article_Sale_Graph@show_graph');
 
+//Year_artical_sales_graph
+Route::get('/year_artical_sale_graph', 'Article_Sale_Graph@view_year');
+Route::post('/addmonth_artical_sale_graph', 'Article_Sale_Graph@show_graph_year');
+
+//month_artical_category_sales_graph
+Route::get('/month_artical_category_graph', 'Article_Category_Sale_Graph@month_view');
+Route::post('/addmonth_artical_category_sales_graph', 'Article_Category_Sale_Graph@month_show_graph');
+
+//Year_artical_category_sales_graph
+Route::get('/year_artical_category_graph', 'Article_Category_Sale_Graph@year_view');
+Route::post('/addyear_artical_category_sales_graph', 'Article_Category_Sale_Graph@year_show_graph');
 
 //sale static
 Route::get('/saleStatic', 'staticController@view');

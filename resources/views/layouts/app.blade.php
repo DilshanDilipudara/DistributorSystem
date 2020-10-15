@@ -85,8 +85,17 @@
                             <a class="dropdown-item" href="{{ url('/monthlyStatic') }}">Monthly Static</a>
                         </div>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ url('/salegraph') }}">Sale Graph </a>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Sale Graph 
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ url('/month_artical_sales_graph') }}">Monthly Artical </a>
+                            <a class="dropdown-item" href="{{ url('/year_artical_sale_graph') }}">Yearly Artical </a>
+                            <a class="dropdown-item" href="{{ url('/month_artical_category_graph') }}">Monthly Artical Category </a>
+                            <a class="dropdown-item" href="{{ url('/year_artical_category_graph') }}">Yearly Artical Category</a>
+                        </div>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ url('/rolechange') }}">User </a>
