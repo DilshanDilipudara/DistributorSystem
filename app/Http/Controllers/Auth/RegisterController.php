@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,7 +31,11 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+//    protected $redirectTo = RouteServiceProvider::HOME;
+    protected function redirectTo()
+    {
+        return redirect()->route('view-new-sale');
+    }
 
     /**
      * Create a new controller instance.
@@ -73,5 +79,11 @@ class RegisterController extends Controller
         $user->save();
 
         return $user;
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        Auth::logout();
+        return redirect('login');
     }
 }

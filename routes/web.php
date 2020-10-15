@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('view-new-sale');
 });
 
 Route::get('/salegraph', function () {
@@ -90,7 +90,7 @@ Route::get('/activeexpensetype/{id}', 'expenseTypeController@active');
 Route::post('/updateexpensetype','expenseTypeController@update');
 
 
-//Vechile 
+//Vechile
 Route::get('/vehicle','vehicleController@view');
 Route::post('/addvehicle','vehicleController@add');
 Route::get('/deletevehicle/{id}','vehicleController@delete');
