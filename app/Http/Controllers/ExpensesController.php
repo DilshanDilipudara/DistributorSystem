@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class ExpensesController extends Controller
 {
+     public function __construct()
+        {
+            $this->middleware('auth');
+        }
         //view
     public function view(Request $req){
 

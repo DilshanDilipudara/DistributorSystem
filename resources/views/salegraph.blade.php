@@ -361,7 +361,7 @@
               {
                   label: 'one',
                   backgroundColor: "blue",
-                  data: [10, 20, 30, 40],
+                  data: [10, 20, 25, 40],
               },
               {
                 label: 'two',
