@@ -27,7 +27,7 @@ class CreateInvoicesTable extends Migration
             $table->date('cheque_date')->nullable();
             $table->boolean('credit')->default(0);
             $table->string('comment')->nullable();
-            $table->boolean('pending')->default(0);
+            $table->boolean('pending')->default(1);
             $table->boolean('closed')->default(1);
             $table->boolean('isActive')->default(1);
             $table->timestamps();

@@ -26,11 +26,12 @@ class InvoiceController extends Controller
     }
 
     public function addNewSale(Request $request) {
-        //dd($request);
+//        dd($request);
         $inv = new Invoice;
         $inv->number = $request->invNum;
         $inv->date = $request->invDate;
-        $inv->shop_id = $request->shop->id;
+        $shop =  json_decode($request->shop);
+        $inv->shop_id =  $shop->id;
         $inv->user_id = auth()->user()->id;
         $inv->total = $request->total;
         $inv->discount = $request->discount;
@@ -50,7 +51,7 @@ class InvoiceController extends Controller
             $articles[$artIDs[$i]] = [
                 'unit_price' => $request->unitPrice[$i],
                 'sale_qty' => $request->saleQt[$i],
-                'discount' => $request->discount[$i],
+                'discount' => $request->discounts[$i],
                 'free_offer' => $request->freeOffer[$i]
             ];
         }
