@@ -53,12 +53,11 @@ class LoginController extends Controller
 
     public function authenticated(Request $request, $user)
     {
-        if(!($user->isActive === 1)){
+        if($user->isActive !== 1){
             Auth::logout();
-            return redirect()->route('login')->withErrors(['username' => 'These credentials do not match our records.']);
+            return redirect()->route('login')->withErrors(['username' => 'Please contact the administrator
+             for activating your account.']);
         }
-        else
-            redirect()->route('view-new-sale');
+        return redirect()->route('view-new-sale');
     }
-
 }
