@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class profile extends Controller
 {
+     public function __construct()
+        {
+            $this->middleware('auth');
+        }
     public function view(Request $req){
         
         $user = Auth::user();

@@ -10,6 +10,10 @@ use App\User;
 
 class roleChange extends Controller
 {
+     public function __construct()
+        {
+            $this->middleware('auth');
+        }
     public function view(Request $req){
         
          $user = User::all();

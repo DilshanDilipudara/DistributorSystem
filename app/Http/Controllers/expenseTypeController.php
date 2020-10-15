@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 class expenseTypeController extends Controller
 {
+     public function __construct()
+        {
+            $this->middleware('auth');
+        }
      //view
     public function view(Request $req){
         $data = ExpenseType::all();

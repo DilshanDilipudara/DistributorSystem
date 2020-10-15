@@ -16,7 +16,12 @@ use App\Http\Controllers\Controller;
 
 class warehouseController extends Controller
 {
-    //
+    
+     public function __construct()
+        {
+            $this->middleware('auth');
+        }
+        
      //view
     public function view(Request $req){
         $data = Metric::all();

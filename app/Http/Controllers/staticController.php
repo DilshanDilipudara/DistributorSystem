@@ -14,6 +14,10 @@ use DB;
 
 class staticController extends Controller
 {
+     public function __construct()
+        {
+            $this->middleware('auth');
+        }
     public function view(Request $req){
         $category  = ArticleCategory::where('isActive',true)->orderBy('name')->get()->unique('name');
         $artical  = Article::where('isActive',true)->orderBy('name')->get()->unique('name');

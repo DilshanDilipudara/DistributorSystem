@@ -46,16 +46,21 @@
       </div><br>
 
       <div class="container-lg">
-        <canvas id="myChart2" style="height:100vh !important;"></canvas>
+        <canvas id="canva_artical" style="height:100vh !important;"></canvas>
       </div>
-  
+    <br>
+      <span class="pl-2 offset-6">&#160;&#160;&#160;</span>
+      <button type="button" onclick="PrintImage();" class="btn btn-Success">Print</button>
+      
  <script>
-        var ctx = document.getElementById('myChart2');
+        var ctx = document.getElementById('canva_artical');
   
         Chart.defaults.global.defaultFontColor = 'gray';
         
-        var y = JSON.parse("{{ json_encode($y_axis) }}");
-        var myChart2 = new Chart(ctx, {
+        var y = <?php echo json_encode($y_axis); ?>;
+        var print_month = <?php echo json_encode($printmonth); ?>;
+        
+        var canva_artical = new Chart(ctx, {
         type: 'line',
         data: {
           labels: ["January","February","March","April","May","June","July","August","September","October","November","December"],
@@ -64,13 +69,13 @@
               data: y,
               fill: false,
               lineTension: 0,
-              borderColor:'orange'
+              borderColor:'#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6),
           }]
       },
       options:{
         title:{
           display:true,
-          text:'Number of sold Articles per month without free issue',
+          text:'Number of Sold Articles per Month - '+ print_month,
           fontSize:25,
           fontColor:'black'
         },
@@ -155,3 +160,15 @@ function showcategory(categoryID){
 
 </script>
 
+<script>
+
+function PrintImage() {
+    var canvas = document.getElementById("canva_artical");
+    var win = window.open();
+    win.document.write("<br><img src='" + canvas.toDataURL() + "'/>");
+    win.print();
+    win.location.reload();
+
+}
+
+</script>

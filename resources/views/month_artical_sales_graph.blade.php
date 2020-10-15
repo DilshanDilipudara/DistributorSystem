@@ -46,17 +46,21 @@
       </div><br>
 
       <div class="container-lg">
-        <canvas id="myChart" style="height:100vh !important;"></canvas>
+        <canvas id="month_artical" style="height:100vh !important;"></canvas>
       </div>
-  
+     <br>
+      <span class="pl-2 offset-6">&#160;&#160;&#160;</span>
+      <button type="button" onclick="PrintImage();" class="btn btn-Success">Print</button>
+      
       <script>
-        var ctx = document.getElementById('myChart');
+        var ctx = document.getElementById('month_artical');
         var x =  JSON.parse("{{ json_encode($x_axis) }}");
+        var print_month = <?php echo json_encode($printmonth); ?>;
         var y = JSON.parse("{{ json_encode($y_axis) }}");
   
         Chart.defaults.global.defaultFontColor = 'gray';
   
-        var myChart = new Chart(ctx, {
+        var month_artical = new Chart(ctx, {
         type: 'line',
         data: {
           labels: x,
@@ -65,14 +69,14 @@
               data: y,
               fill: false,
               lineTension: 0,
-              borderColor:'crimson',
+              borderColor:'#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6),
               // pointRadius: 1,
           }]
       },
       options:{
         title:{
           display:true,
-          text:'Number of sold Articles per day without free issue',
+          text:'Number of sold Articles per day ' + print_month,
           fontSize:25,
           fontColor:'black'
         },
@@ -176,3 +180,15 @@ function showcategory(categoryID){
 
 </script>
 
+<script>
+
+function PrintImage() {
+    var canvas = document.getElementById("month_artical");
+    var win = window.open();
+    win.document.write("<br><img src='" + canvas.toDataURL() + "'/>");
+    win.print();
+    win.location.reload();
+
+}
+
+</script>

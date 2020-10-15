@@ -13,9 +13,14 @@ use stdClass;
 
 class Article_Category_Sale_Graph extends Controller
 {
+      public function __construct()
+          {
+               $this->middleware('auth');
+          }
     public function month_view(){
 
        $date =  \Carbon\Carbon::now();
+       $printmonth = date("F-Y", strtotime($date));
        $startDayofMonth =   \Carbon\Carbon::parse($date)->startOfMonth()->toDateString();
        $lastDayofMonth =    \Carbon\Carbon::parse($date)->endOfMonth()->toDateString();
        
@@ -70,11 +75,12 @@ class Article_Category_Sale_Graph extends Controller
          //dd($data);
          unset($obj[0]) ;
          //dd($obj);
-        return view ('/month_artical_category_graph',compact('obj','x_axis','artical_category'));
+        return view ('/month_artical_category_graph',compact('obj','x_axis','artical_category','printmonth'));
     }
     public function month_show_graph(Request $req){
-       
+         
        $date = $req->date;
+       $printmonth = date("F-Y", strtotime($date));
        $startDayofMonth =   \Carbon\Carbon::parse($date)->startOfMonth()->toDateString();
        $lastDayofMonth =    \Carbon\Carbon::parse($date)->endOfMonth()->toDateString();
        
@@ -130,6 +136,115 @@ class Article_Category_Sale_Graph extends Controller
          unset($obj[0]) ;
          //dd($obj);
 
-         return view ('/month_artical_category_graph',compact('obj','x_axis','artical_category'));
+         return view ('/month_artical_category_graph',compact('obj','x_axis','artical_category','printmonth'));
     }
+
+     public function year_view(){
+
+       $date =  \Carbon\Carbon::now();
+       $printmonth = date("Y", strtotime($date));
+       $startDayofYear =   \Carbon\Carbon::parse($date)->startOfYear()->toDateString();
+       $lastDayofYear =    \Carbon\Carbon::parse($date)->endOfYear()->toDateString();
+            
+    
+         $artical_category =  ArticleCategory::all();
+         //dd(  $artical_category );
+         $obj[] = new stdClass;   
+         
+
+         foreach($artical_category as $val){
+
+            $arr  = array();
+            $data =  DB::table('article_invoice as ai')
+                        ->join('invoices as i','ai.invoice_id','=','i.id')
+                        ->join('articles as a','ai.article_id','=','a.id')
+                        ->join('article_categories as ac','ac.id','=','a.article_category_id')
+                        ->where('ac.id',$val->id)
+                        ->whereDate('i.date','>=',$startDayofYear )
+                        ->whereDate('i.date','<=',$lastDayofYear )
+                        ->select(DB::raw('Month(i.date) as month'),DB::raw('SUM(ai.sale_qty) as total_qty'))    
+                        ->groupBy('month')  
+                        ->orderBy('month')
+                        ->get();
+            //dd($data);
+            $y_axis = array();
+            $value = -1;
+            $key = -1;
+            for($i = 0;$i < 12 ;$i++){
+               
+                if(isset($data[$i]->month)){
+                        $value = $data[$i]->month;
+                        $key = $i;
+                 }
+                if($value == $i+1){ 
+                    
+                     $y_axis[] = $data[$key]->total_qty;
+                    
+                }
+                else{
+                     $y_axis[] = 0;
+                }
+            }
+            $obj[$val->id] = $y_axis;  
+         }
+         //dd($data);
+         unset($obj[0]) ;
+        // dd($obj);
+        return view ('/year_artical_category_graph',compact('obj','artical_category','printmonth'));
+    }
+    public function year_show_graph(Request $req){
+       
+       $date = $req->date;
+       $printmonth = date("Y", strtotime($date));
+       $startDayofYear =   \Carbon\Carbon::parse($date)->startOfYear()->toDateString();
+       $lastDayofYear =    \Carbon\Carbon::parse($date)->endOfYear()->toDateString();
+            
+    
+         $artical_category =  ArticleCategory::all();
+         //dd(  $artical_category );
+         $obj[] = new stdClass;   
+         
+
+         foreach($artical_category as $val){
+
+            $arr  = array();
+            $data =  DB::table('article_invoice as ai')
+                        ->join('invoices as i','ai.invoice_id','=','i.id')
+                        ->join('articles as a','ai.article_id','=','a.id')
+                        ->join('article_categories as ac','ac.id','=','a.article_category_id')
+                        ->where('ac.id',$val->id)
+                        ->whereDate('i.date','>=',$startDayofYear )
+                        ->whereDate('i.date','<=',$lastDayofYear )
+                        ->select(DB::raw('Month(i.date) as month'),DB::raw('SUM(ai.sale_qty) as total_qty'))    
+                        ->groupBy('month')  
+                        ->orderBy('month')
+                        ->get();
+            //dd($data);
+            $y_axis = array();
+            $value = -1;
+            $key = -1;
+            for($i = 0;$i < 12 ;$i++){
+               
+                if(isset($data[$i]->month)){
+                        $value = $data[$i]->month;
+                        $key = $i;
+                 }
+                if($value == $i+1){ 
+                    
+                     $y_axis[] = $data[$key]->total_qty;
+                    
+                }
+                else{
+                     $y_axis[] = 0;
+                }
+            }
+            $obj[$val->id] = $y_axis;  
+         }
+         //dd($data);
+         unset($obj[0]) ;
+        // dd($obj);
+
+         return view ('/year_artical_category_graph',compact('obj','artical_category','printmonth'));
+    }
+
 }

@@ -32,6 +32,10 @@ Route::post('/addmonth_artical_sale_graph', 'Article_Sale_Graph@show_graph_year'
 Route::get('/month_artical_category_graph', 'Article_Category_Sale_Graph@month_view');
 Route::post('/addmonth_artical_category_sales_graph', 'Article_Category_Sale_Graph@month_show_graph');
 
+//Year_artical_category_sales_graph
+Route::get('/year_artical_category_graph', 'Article_Category_Sale_Graph@year_view');
+Route::post('/addyear_artical_category_sales_graph', 'Article_Category_Sale_Graph@year_show_graph');
+
 //sale static
 Route::get('/saleStatic', 'staticController@view');
 Route::post('/showsalestatic','staticController@showSale');

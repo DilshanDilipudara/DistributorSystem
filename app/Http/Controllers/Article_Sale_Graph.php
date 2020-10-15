@@ -13,10 +13,14 @@ use DB;
 
 class Article_Sale_Graph extends Controller
 {
+     public function __construct()
+        {
+            $this->middleware('auth');
+        }
     public function view(){
 
         $date =  \Carbon\Carbon::now();
-          
+        $printmonth = date("F-Y", strtotime($date));
        $startDayofMonth =   \Carbon\Carbon::parse($date)->startOfMonth()->toDateString();
        $lastDayofMonth =    \Carbon\Carbon::parse($date)->endOfMonth()->toDateString();
        $stdate = new DateTime($startDayofMonth);
@@ -61,12 +65,13 @@ class Article_Sale_Graph extends Controller
         $category  = ArticleCategory::where('isActive',true)->orderBy('name')->get()->unique('name');
         $artical  = Article::where('isActive',true)->orderBy('name')->get()->unique('name');
         
-        return view('/month_artical_sales_graph',compact('category','artical','x_axis','y_axis'));
+        return view('/month_artical_sales_graph',compact('category','artical','x_axis','y_axis','printmonth'));
     }
 
     public function show_graph(Request $req){
        
         $date = $req->date;
+        $printmonth = date("F-Y", strtotime($date));
         $artical_id = $req->articalID;
         $category_id = $req->categoryID;
        
@@ -115,7 +120,7 @@ class Article_Sale_Graph extends Controller
     $category  = ArticleCategory::where('isActive',true)->orderBy('name')->get()->unique('name');
     $artical  = Article::where('isActive',true)->orderBy('name')->get()->unique('name');
 
-     return view('/month_artical_sales_graph',compact('category','artical','x_axis','y_axis'));
+     return view('/month_artical_sales_graph',compact('category','artical','x_axis','y_axis','printmonth'));
 
     }
 
@@ -124,7 +129,7 @@ class Article_Sale_Graph extends Controller
 
         $date =  \Carbon\Carbon::now();    
         $year =  date("Y", strtotime($date));
-       
+        $printmonth = date("Y", strtotime($date));
        
        $startDayofYear =   \Carbon\Carbon::parse($date)->startOfYear()->toDateString();
        $lastDayofYear =    \Carbon\Carbon::parse($date)->endOfYear()->toDateString();
@@ -161,12 +166,13 @@ class Article_Sale_Graph extends Controller
         $category  = ArticleCategory::where('isActive',true)->orderBy('name')->get()->unique('name');
         $artical  = Article::where('isActive',true)->orderBy('name')->get()->unique('name');
         
-        return view('/year_artical_sale_graph',compact('category','artical','y_axis'));
+        return view('/year_artical_sale_graph',compact('category','artical','y_axis','printmonth'));
     }
 
     public function show_graph_year(Request $req){
        
         $date = $req->date;
+        $printmonth = date("Y", strtotime($date));
         $year =  date("Y", strtotime($date));
         $artical_id = $req->articalID;
         $category_id = $req->categoryID;
@@ -204,10 +210,10 @@ class Article_Sale_Graph extends Controller
            }
        }
    
-    $category  = ArticleCategory::where('isActive',true)->orderBy('name')->get()->unique('name');
-    $artical  = Article::where('isActive',true)->orderBy('name')->get()->unique('name');
+        $category  = ArticleCategory::where('isActive',true)->orderBy('name')->get()->unique('name');
+        $artical  = Article::where('isActive',true)->orderBy('name')->get()->unique('name');
 
-     return view('/year_artical_sale_graph',compact('category','artical','y_axis'));
+     return view('/year_artical_sale_graph',compact('category','artical','y_axis','printmonth'));
 
     }
 

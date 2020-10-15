@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class vehicleController extends Controller
 {
+     public function __construct()
+        {
+            $this->middleware('auth');
+        }
        //view
     public function view(Request $req){
         $data = VehicleType::all();

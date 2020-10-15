@@ -7,7 +7,7 @@
       <div class="container-lg mb-4">
         <h1 class="text-center pt-4 font-weight-bold">Yealy Artical Sale Graph</h1>
         <br><br>
-         <form action="/addmonth_artical_category_sales_graph" method="post">
+         <form action="/addyear_artical_category_sales_graph" method="post">
                           @csrf
                         <div class="form-group row">                       
                                 <label for="sales_from" class="col-sm-2 col-form-label">Month</label>
@@ -28,17 +28,14 @@
       </div><br>
 
       <div class="container-lg">
-        <canvas id="month_artical_category" style="height:100vh !important;"></canvas>
+        <canvas id="category_year" style="height:100vh !important;"></canvas>
       </div>
-       <br>
+      <br>
       <span class="pl-2 offset-6">&#160;&#160;&#160;</span>
       <button type="button" onclick="PrintImage();" class="btn btn-Success">Print</button>
 
-  
  <script>
-        var ctx = document.getElementById('month_artical_category');
-       
-        var x = <?php echo json_encode($x_axis); ?>;
+        var ctx = document.getElementById('category_year');
         var y = <?php echo json_encode($obj); ?>;
         var print_month = <?php echo json_encode($printmonth); ?>;
         var category = <?php echo json_encode($artical_category); ?>;
@@ -52,22 +49,21 @@
                         label:category[i].name ,
                         backgroundColor: '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6),
                         data:y[i+1], //remove the data[0] value there for adding 1.
-                    }
-            
-        }
-
+                    }    
+        }      
+      
         Chart.defaults.global.defaultFontColor = 'gray';
         var data = {
           datasets:dataset,
-          labels: x,
+          labels: ["January","February","March","April","May","June","July","August","September","October","November","December"],
         };
-        var month_artical_category = new Chart(ctx, {
+        var category_year = new Chart(ctx, {
         type: 'bar',
         data: data,
         options:{
           title:{
             display:true,
-            text:'Number of Articles category per day  ' + print_month,
+            text:'Number of Sold Article Category per Month - '+print_month,
             fontSize:25,
             fontColor:'black'
           },
@@ -102,7 +98,7 @@
                     {
                       scaleLabel: {
                       display: true,
-                      labelString: "Day",
+                      labelString: "Month",
                       fontSize:18
                 },
               },
@@ -114,19 +110,10 @@
       </script>
     </section>
 
-
-
- 
-@endsection
-
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
-
 <script>
 
 function PrintImage() {
-    var canvas = document.getElementById("month_artical_category");
+    var canvas = document.getElementById("category_year");
     var win = window.open();
     win.document.write("<br><img src='" + canvas.toDataURL() + "'/>");
     win.print();
@@ -135,3 +122,11 @@ function PrintImage() {
 }
 
 </script>
+
+ 
+@endsection
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
