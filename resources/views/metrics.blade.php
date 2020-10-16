@@ -27,7 +27,7 @@
       </tr>
     </thead>
     <tbody>
-
+   
       @foreach($data as $val)
       <tr>
         <th scope="row">{{$val->id}}</th>

@@ -15,10 +15,11 @@ Route::get('/', function () {
     return redirect()->route('view-new-sale');
 });
 
-Route::get('/salegraph', function () {
-    return view('salegraph');
-});
 
+
+//pending order summery
+Route::post('/show_pending_order_summery', 'pendiing_order_summery@show_pending');
+Route::get('/pending_order_summery', 'pendiing_order_summery@view');
 
 //month_artical_sales_graph
 Route::get('/month_artical_sales_graph', 'Article_Sale_Graph@view');
