@@ -9,4 +9,8 @@ class Shop extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+
+    public function invoices() {
+        return $this->hasMany('App\Invoice');
+    }
 }
