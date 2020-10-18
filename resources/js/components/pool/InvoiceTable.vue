@@ -13,7 +13,7 @@
             label="Order Date">
         </el-table-column>
         <el-table-column
-            prop="created_at"
+            prop="cheque_date"
             label="Money collecting due date">
         </el-table-column>
         <el-table-column

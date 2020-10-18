@@ -31,7 +31,7 @@
                         <el-tab-pane label="All Orders" name="first"><invoice-table :tableData="invoices"/></el-tab-pane>
                         <el-tab-pane label="Money to be collected" name="second"><invoice-table :tableData="toBeCollectedInvoices"/></el-tab-pane>
                         <el-tab-pane label="Completed" name="third"><invoice-table :tableData="completedInvoices"/></el-tab-pane>
-                        <el-tab-pane label="Collect within next 7 days" name="fourth">Collect within next 7 days</el-tab-pane>
+                        <el-tab-pane label="Collect within next 7 days" name="fourth"><invoice-table :tableData="nextSevenInvoices"/></el-tab-pane>
                         <el-tab-pane label="Deliver Pending" name="fifth"><invoice-table :tableData="pendingInvoices"/></el-tab-pane>
                     </el-tabs>
                 </el-col>
@@ -96,11 +96,23 @@
                     return invoice.pending_amount <= 0;
                 });
             },
-            pendingInvoices() {
+            nextSevenInvoices() {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const sevenFuture = new Date();
+                sevenFuture.setTime(today.getTime() + 3600 * 1000 * 24 * 7);
+
                 return this.invoices.filter((invoice) => {
-                    return invoice.pending == 1;
+                    const due_date = new Date(invoice.cheque_date).getTime();
+                    return (today.getTime()  <= due_date && due_date <= sevenFuture.getTime());
                 });
-            }
+            },
+            pendingInvoices() {
+                const today = new Date();
+                return this.invoices.filter((invoice) => {
+                    return (new Date(invoice.deliver_date).getTime() >= today.getTime());
+                });
+            },
         },
         methods: {
             handleClick(tab, event) {
