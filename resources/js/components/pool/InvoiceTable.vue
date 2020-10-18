@@ -17,7 +17,7 @@
             label="Money collecting due date">
         </el-table-column>
         <el-table-column
-            prop="shop.name"
+            prop="shop_name"
             label="Customer">
         </el-table-column>
         <el-table-column
@@ -29,7 +29,7 @@
             label="Pending Amount">
         </el-table-column>
         <el-table-column
-            prop="articles_count"
+            prop="item_count"
             label="Item count">
         </el-table-column>
         <el-table-column

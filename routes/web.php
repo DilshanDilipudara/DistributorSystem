@@ -138,6 +138,6 @@ Route::post('/add-new-sale', 'InvoiceController@addNewSale')->name('add-new-sale
 Route::post('/shops/{shop}/review', 'ShopController@approve')->name('approve-shop');
 Route::post('/shops/{shop}/submit', 'ShopController@submit')->name('submit-shop');
 
-Route::get('/invoices', 'InvoiceController@index')->name('invoices');
+Route::get('/invoices', 'InvoiceController@getPoolData')->name('get-pool-data');
 
 Route::resource('shops', 'ShopController');
