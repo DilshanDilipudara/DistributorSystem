@@ -54,6 +54,9 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('view-new-sale') }}">Add New Sale </a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('view-transaction-pool') }}">Transaction Pool </a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
