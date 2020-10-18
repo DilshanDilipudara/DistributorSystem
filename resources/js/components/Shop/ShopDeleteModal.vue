@@ -4,7 +4,7 @@
             <div class="modal-content">
                 <div class="modal-header text-center">
                     <h4 class="modal-title w-100 font-weight-bold">Update Shop</h4>
-                    <button type="button" class="close" @click="$emit('delete-modal')">
+                    <button type="button" class="close" @click="$emit('close-modal')">
                         <span>&times;</span>
                     </button>
                 </div>

@@ -2,5 +2,6 @@
     "/js/add-new-sale.js": "/js/add-new-sale.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/js/invoice-pool.js": "/js/invoice-pool.js",
     "/js/shop-create.js": "/js/shop-create.js"
 }

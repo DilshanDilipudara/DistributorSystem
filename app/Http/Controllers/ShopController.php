@@ -180,7 +180,13 @@ class ShopController extends Controller
         $appr = 'approval_' . $shop->id;
         $approval = $request->$appr;
 
-        $shop->approved = $approval;
+        if($approval == '0') {
+            $shop->isActive = 0;
+        }
+        else {
+            $shop->approved = $approval;
+        }
+
         $shop->save();
 
         return redirect()->route('view-review-shops');

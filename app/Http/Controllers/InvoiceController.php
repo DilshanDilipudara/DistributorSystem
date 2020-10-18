@@ -6,6 +6,8 @@ use App\ArticleCategory;
 use App\Invoice;
 use App\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Laravel\Ui\Presets\React;
 
 class InvoiceController extends Controller
 {
@@ -14,7 +16,37 @@ class InvoiceController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function getPoolData(Request $request) {
+        $full_range = ($request->minDate && $request->maxDate);
+
+        $shops = DB::table('invoices')
+            ->join('article_invoice', 'article_invoice.invoice_id', '=', 'invoices.id')
+            ->join('shops', 'shops.id', '=', 'invoices.shop_id')
+            ->select(
+                'invoices.id',
+                'number',
+                'date',
+                'total',
+                DB::raw('(total - invoices.cash - invoices.cheque) as pending_amount'),
+                DB::raw('sum(article_invoice.sale_qty) as item_count'),
+                'closed',
+                'pending',
+                'comment',
+                'shops.name as shop_name'
+            )
+            ->where('invoices.user_id', auth()->user()->id)
+            ->when($full_range, function ($query) use ($request) {
+                return $query->whereBetween('date', [$request->minDate, $request->maxDate]);
+            })
+            ->groupBy('invoices.id')
+            ->when($full_range, function ($query) { return $query;}, function ($query) use ($request) {
+                return $query->orderBy('date', 'desc')->limit(100);
+            })
+            ->get();
+        return $shops;
+    }
+
+    public function showView()
     {
         $shops = Shop::select('id', 'name', 'cash', 'credit', 'cheque')->where([
             ['isActive', 1],
@@ -41,8 +73,8 @@ class InvoiceController extends Controller
         $inv->cheque_date = $request->chequeDate;
         $inv->credit = $request->creditTaken ? 1 : 0;
         $inv->comment = $request->comments;
-        $inv->pending = "1";
-        $inv->closed = "0";
+        $inv->pending = 1;
+        $inv->closed = 0;
         $inv->save();
 
         $articles = [];

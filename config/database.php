@@ -51,7 +51,7 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-           
+
             'host' => $host,
             'port' => $DATABASE_URL["port"],
             'database' => $database,

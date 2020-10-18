@@ -11,7 +11,7 @@
         <section>
             <h2 class="col-md-12 text-center"> Add New Sale</h2>
         </section>
-        <form action="{{ route('add-new-sale') }}" method="post">
+        <form id="add-new-sale-form" action="{{ route('add-new-sale') }}" method="post">
             @csrf
             <section>
                 <div class="text3">
@@ -25,7 +25,7 @@
                                         <div class=" col-lg-10">
                                             <input type="text" class="form-control" id="inputPassword"
                                                    placeholder="invoice number"
-                                                   name="invNum">
+                                                   name="invNum" required>
                                         </div>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                         <div class="col-lg-10">
                                             <label class="mr-sm-2 sr-only" for="shopSelect">Preference</label>
                                             <select class="custom-select mr-sm-2" id="shopSelect" name="shop"
-                                                    v-model="shop">
+                                                    v-model="shop" required>
                                                 <option selected value="0">Choose...</option>
                                                 @foreach($shops as $shop)
                                                     <option value="{{ $shop }}">{{ $shop->name }}</option>
@@ -53,7 +53,8 @@
                                     <div class="form-group row">
                                         <label for="invDate" class="col-md-12 col-lg-2 col-form-label">Date</label>
                                         <div class=" col-lg-10">
-                                            <input type="date" class="form-control" id="invDate" name="invDate">
+                                            <input type="date" class="form-control" id="invDate"
+                                                   name="invDate" required>
                                         </div>
                                     </div>
                                 </div>
@@ -64,7 +65,8 @@
                                         <label for="articleCatList" class="col-md-12 col-lg-2 col-form-label">Product
                                             Category</label>
                                         <div class="col-lg-10">
-                                            <select class="custom-select mr-sm-2" id="articleCatList" name="artCatID">
+                                            <select class="custom-select mr-sm-2" id="articleCatList"
+                                                    name="artCatID" required>
                                                 <option selected value="0">Choose...</option>
                                                 @foreach($prod_cat as $cat)
                                                     <option value="{{ $cat->id }}">{{ $cat->name }}</option>
@@ -94,9 +96,11 @@
                         <div class="sales_list2 bg-secondary p-1 pt-2">Free offer</div>
                         <div class="sales_list2 bg-secondary p-1 pt-2">Min qty</div>
                     </div>
+                    @verbatim
                     <div id="articleList">
-                        <article-list></article-list>
+                        <article-list @error-state-change="handleArticleError" @total-change="handleTotalChange"></article-list>
                     </div>
+                    @endverbatim
                     <div class="border-bottom border-secondary text1 mt-2"></div>
                 </div>
             </section>
@@ -111,7 +115,8 @@
                                         <label for="deliverDate" class="col-md-12 col-lg-2 col-form-label">Deliver
                                             Date</label>
                                         <div class=" col-lg-10">
-                                            <input type="date" class="form-control" id="deliverDate" name="deliverDate">
+                                            <input type="date" class="form-control" id="deliverDate"
+                                                   name="deliverDate" required>
                                         </div>
                                     </div>
                                 </div>
@@ -128,7 +133,7 @@
                                                        :disabled="cashNotAllowed"
                                                        v-model="cashTaken">
                                                 <label class="form-check-label"
-                                                       for="cashCheckbox">Cash(>2000.00)</label>
+                                                       for="cashCheckbox">Cash</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="chequeCheckbox"
@@ -150,12 +155,16 @@
                                         <div class="col-lg-4 offset-lg-2">
                                             <input type="number" class="form-control" id="cash_amount"
                                                    placeholder="cash amount"
-                                                   name="cashAmount" v-bind:disabled="!cashTaken">
+                                                   name="cashAmount"
+                                                   :disabled="!cashTaken"
+                                                   v-model="cashAmount" required>
                                         </div>
                                         <div class="col-lg-4 offset-lg-1">
                                             <input type="number" class="form-control" id="cheque_amount"
                                                    placeholder="check amount"
-                                                   name="chequeAmount" v-bind:disabled="!chequeTaken">
+                                                   name="chequeAmount"
+                                                   :disabled="!chequeTaken"
+                                                    v-model="chequeAmount" required>
                                         </div>
                                     </div>
                                 </div>
@@ -167,7 +176,7 @@
                                             Date</label>
                                         <div class=" col-lg-10">
                                             <input type="date" class="form-control" id="chequeDate"
-                                                   name="chequeDate" v-bind:disabled="!chequeTaken">
+                                                   name="chequeDate" :disabled="!chequeTaken" required>
                                         </div>
                                     </div>
                                 </div>
@@ -192,8 +201,8 @@
                                         <label for="inputPassword"
                                                class="col-md-12 col-lg-2 col-form-label">&#160;</label>
                                         <div class=" col-lg-10">
-                                            <button type="submit" class="btn btn-success btn-lg btn-block">Book &
-                                                Print
+                                            <button id="sale-sub-btn" type="submit"
+                                                    class="btn btn-success btn-lg btn-block">Book & Print
                                             </button>
                                         </div>
                                     </div>
@@ -204,6 +213,12 @@
                 </div>
             </section>
         </form>
+        <modal-window v-if="showErrorModal"
+                  :title="'RECHECK!'"
+                  :message="errorMessage"
+                  :allow-btn-msg="''"
+                  :cancel-btn-msg="'Close'"
+                  @hide-modal="showErrorModal = false"></modal-window>
     </div>
 
 @endsection
