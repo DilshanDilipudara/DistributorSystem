@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600&display=swap" rel="stylesheet">
     <link href="{{ asset('css/add-new-sale.css') }}" rel="stylesheet">
 @endsection
 
@@ -172,11 +171,11 @@
                             <div class="row">
                                 <div class="col-md-12 col-lg-10">
                                     <div class="form-group row">
-                                        <label for="chequeDate" class="col-md-12 col-lg-2 col-form-label">Cheque
+                                        <label for="chequeDate" class="col-md-12 col-lg-2 col-form-label">Due
                                             Date</label>
                                         <div class=" col-lg-10">
                                             <input type="date" class="form-control" id="chequeDate"
-                                                   name="chequeDate" :disabled="!chequeTaken" required>
+                                                   name="chequeDate" required>
                                         </div>
                                     </div>
                                 </div>

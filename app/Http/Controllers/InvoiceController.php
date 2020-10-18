@@ -29,6 +29,8 @@ class InvoiceController extends Controller
                 'total',
                 DB::raw('(total - invoices.cash - invoices.cheque) as pending_amount'),
                 DB::raw('sum(article_invoice.sale_qty) as item_count'),
+                'cheque_date',
+                'deliver_date',
                 'closed',
                 'pending',
                 'comment',
