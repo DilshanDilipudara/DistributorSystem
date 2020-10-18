@@ -40,7 +40,7 @@ class InvoiceController extends Controller
             })
             ->groupBy('invoices.id')
             ->when($full_range, function ($query) { return $query;}, function ($query) use ($request) {
-                return $query->orderBy('date', 'desc')->limit(20);
+                return $query->orderBy('date', 'desc')->limit(100);
             })
             ->get();
         return $shops;
