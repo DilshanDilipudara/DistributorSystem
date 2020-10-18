@@ -6,6 +6,7 @@ use App\ArticleCategory;
 use App\Invoice;
 use App\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
@@ -14,7 +15,27 @@ class InvoiceController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index() {
+        $shops = Invoice::with(['shop:id,name', 'user:id,name'])
+            ->select([
+                'id',
+                'number',
+                'date',
+                'user_id',
+                'shop_id',
+                'total',
+                DB::raw('(total - cash - cheque) as pending_amount'),
+                'closed',
+                'pending',
+                'comment'
+            ])
+            ->where('user_id', auth()->user()->id)
+            ->withCount('articles')
+            ->get();
+        return $shops;
+    }
+
+    public function showView()
     {
         $shops = Shop::select('id', 'name', 'cash', 'credit', 'cheque')->where([
             ['isActive', 1],
@@ -41,8 +62,8 @@ class InvoiceController extends Controller
         $inv->cheque_date = $request->chequeDate;
         $inv->credit = $request->creditTaken ? 1 : 0;
         $inv->comment = $request->comments;
-        $inv->pending = "1";
-        $inv->closed = "0";
+        $inv->pending = 1;
+        $inv->closed = 0;
         $inv->save();
 
         $articles = [];

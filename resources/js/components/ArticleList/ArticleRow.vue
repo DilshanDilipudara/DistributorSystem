@@ -44,7 +44,6 @@ export default {
             saleQt: 0,
             discount: 0,
             freeOffer: 0,
-            hasError: true,
         };
     },
 
@@ -55,17 +54,21 @@ export default {
 
             return discount;
         },
-
         totalVal() {
             let total = this.article.sell_price * this.saleQt * (100 - this.discount) / 100;
             this.$emit('update-total', [total, this.ind]);
 
             return total;
         },
+        hasError(){
+            let isError = (this.saleQt > 0) && (this.saleQt < this.article.min_sale_qty);
+            this.$emit('error-status-change', [isError, this.ind]);
 
+            return isError;
+        },
         classDangerObj() {
             return {
-                'text-danger': (this.saleQt > 0) && (this.saleQt < this.article.min_sale_qty)
+                'text-danger': this.hasError,
             };
         }
     }
