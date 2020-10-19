@@ -61,7 +61,8 @@
             <select class="form-control" id="modelFieldRole" name="role"  required>
                 <option ></option>      
                 <option value="rep">Rep</option>
-                <option value="manager">Stock Manager</option>
+                <option value="manager"> Manager</option>
+                <option value="stock_keeper"> Stock Keeper</option>
                 <option value="admin">Admin</option>
             </select>
           </div>
