@@ -32,9 +32,11 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
 
+                    @if(Auth::user()->role == "admin" || Auth::user()->role == "manager"  )
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ url('/metrics') }}">Metrics </a>
                     </li>
+                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
@@ -42,7 +44,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{ url('/articalcategory') }}">Artical Category</a>
-                            <a class="dropdown-item" href="{{ url('/artical') }}">Artical Name</a>
+                            <a class="dropdown-item" href="{{ url('/artical') }}">Artical ADD</a>
                         </div>
                     </li>
                     <li class="nav-item active">
@@ -116,6 +118,60 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ url('/profile') }}">Profile </a>
                     </li>
+                    @endif
+                    @if(Auth::user()->role == "stock_keeper")
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Artical
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ url('/articalcategory') }}">Artical Category</a>
+                            <a class="dropdown-item" href="{{ url('/artical') }}">Artical ADD</a>
+                        </div>
+                    </li>
+                     <li class="nav-item active">
+                        <a class="nav-link" href="{{ url('/warehouse') }}">Warehouse </a>
+                    </li>
+                     <li class="nav-item active">
+                        <a class="nav-link" href="{{ url('/suppler') }}">Supplier </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Expenses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ url('/vehicle') }}">Vehicle </a>
+                            <a class="dropdown-item" href="{{ url('/ExpenseType') }}">Expenses Type</a>
+                            <a class="dropdown-item" href="{{ url('/Expenses') }}">Expenses</a>
+                            <a class="dropdown-item" href="{{ url('/transportExpenses') }}">Transport Expenses</a>
+                        </div>
+                    </li>
+                    @endif
+                     @if(Auth::user()->role == "rep" )
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ route('view-new-sale') }}">Add New Sale </a>
+                        </li>
+                         <li class="nav-item active">
+                            <a class="nav-link" href="{{ route('shops.create') }}">Add Shops </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ url('/warehouse') }}">Warehouse </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Expenses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ url('/vehicle') }}">Vehicle </a>
+                            <a class="dropdown-item" href="{{ url('/ExpenseType') }}">Expenses Type</a>
+                            <a class="dropdown-item" href="{{ url('/Expenses') }}">Expenses</a>
+                            <a class="dropdown-item" href="{{ url('/transportExpenses') }}">Transport Expenses</a>
+                        </div>
+                    </li>
+                    @endif
                 </ul>
             </div>
             @endauth
