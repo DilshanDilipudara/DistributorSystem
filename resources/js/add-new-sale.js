@@ -18,7 +18,6 @@ const app = new Vue({
         showErrorModal: false,
         total: 0,
         errorMessage: '',
-
     },
     computed: {
         selectedShop() {
@@ -79,6 +78,5 @@ const app = new Vue({
                 }
             });
     },
-
 });
 

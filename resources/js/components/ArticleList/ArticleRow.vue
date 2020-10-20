@@ -37,13 +37,13 @@
 
 <script>
 export default {
-    props: ['article', 'ind'],
+    props: ['article', 'ind', 'initQts'],
 
     data() {
         return {
-            saleQt: 0,
-            discount: 0,
-            freeOffer: 0,
+            saleQt: this.initQts.saleQt,
+            discount: this.initQts.discount,
+            freeOffer: this.initQts.freeOffer,
         };
     },
 
