@@ -88,7 +88,8 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{ url('/pending_order_summery') }}">Pending Order Summery</a>
-                        </div>
+                             <a class="dropdown-item" href="{{ url('/deliver_pending') }}">Deliver Pending</a>
+                        </div>    
                     </li>
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
