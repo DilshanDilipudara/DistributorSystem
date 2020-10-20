@@ -15,6 +15,8 @@ Route::get('/', function () {
     return redirect()->route('view-new-sale');
 });
 
+Route::get('/deliver_pending', 'deliver_pending@view');
+Route::post('/deliver_pending_show', 'deliver_pending@show_pending');
 
 
 //pending order summery
