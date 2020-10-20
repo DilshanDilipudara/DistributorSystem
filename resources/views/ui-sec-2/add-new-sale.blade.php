@@ -81,27 +81,11 @@
             </section>
 
             <section style="overflow-x: auto !important;" class="mt-4 ml-sm-2 mr-sm-2">
-                <div class="sales_list3">
-                    <div class="border-bottom border-secondary text1 mb-2"></div>
-                    <div class="sales_list1">
-                        <div class="sales_list2 bg-secondary p-1 pt-2">#</div>
-                        <div class="sales_list2 bg-secondary p-1 pt-2">Article name</div>
-                        <div class="sales_list2 bg-secondary p-1 pt-2">Volume</div>
-                        <div class="sales_list2 bg-secondary p-1 pt-2">Unit Price</div>
-                        <div class="sales_list2 bg-secondary p-1 pt-2">Sale Quantity</div>
-                        <div class="sales_list2 bg-secondary p-1 pt-2">Discount</div>
-                        <div class="sales_list2 bg-secondary p-1 pt-2">%Value</div>
-                        <div class="sales_list2 bg-secondary p-1 pt-2">Total</div>
-                        <div class="sales_list2 bg-secondary p-1 pt-2">Free offer</div>
-                        <div class="sales_list2 bg-secondary p-1 pt-2">Min qty</div>
-                    </div>
                     @verbatim
                     <div id="articleList">
                         <article-list @error-state-change="handleArticleError" @total-change="handleTotalChange"></article-list>
                     </div>
                     @endverbatim
-                    <div class="border-bottom border-secondary text1 mt-2"></div>
-                </div>
             </section>
 
             <section class="mt-4 pt-4">
