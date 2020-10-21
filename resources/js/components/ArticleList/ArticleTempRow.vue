@@ -60,13 +60,13 @@ export default {
     },
     computed: {
         disVal() {
-            let discount =  this.article.sell_price * this.saleQt * this.discount / 100;
+            let discount =  Math.round(this.article.sell_price * this.saleQt * this.discount)/100;
             this.$emit('update-discount', [discount, this.ind]);
 
             return discount;
         },
         totalVal() {
-            let total = this.article.sell_price * this.saleQt * (100 - this.discount) / 100;
+            let total = Math.round(this.article.sell_price * this.saleQt * (100 - this.discount) )/ 100;
             this.$emit('update-total', [total, this.ind]);
 
             return total;
