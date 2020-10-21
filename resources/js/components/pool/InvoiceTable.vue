@@ -2,6 +2,7 @@
     <el-table
         :data="tableData"
         style="width: 100%"
+        :row-class-name="tableRowClassName"
         show-summary
         max-height="500">
         <el-table-column
@@ -25,8 +26,10 @@
             label="Total Amount">
         </el-table-column>
         <el-table-column
-            prop="pending_amount"
             label="Pending Amount">
+        <template slot-scope="scope">
+            <span>{{ scope.row.pending_amount <= 0 ? 0 : scope.row.pending_amount  }}</span>
+        </template>
         </el-table-column>
         <el-table-column
             prop="item_count"
@@ -58,14 +61,26 @@
 <script>
     export default {
         props:['tableData'],
+        data() {
+            return {
+
+            }
+        },
         methods: {
             tableRowClassName({row, rowIndex}) {
-                if (rowIndex === 1) {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const sevenFuture = new Date();
+                sevenFuture.setTime(today.getTime() + 3600 * 1000 * 24 * 7);
+
+                const due_date = new Date(row.cheque_date).getTime();
+                const dueInSevenDays = (today.getTime()  <= due_date && due_date <= sevenFuture.getTime()) && row.closed === 0;
+
+                if (dueInSevenDays) {
                     return 'warning-row';
-                } else if (rowIndex === 3) {
-                    return 'success-row';
+                } else {
+                    return '';
                 }
-                return '';
             }
         },
     }

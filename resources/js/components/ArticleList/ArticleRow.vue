@@ -27,7 +27,7 @@
             <p>{{ totalVal }}</p>
         </div>
         <div class="sales_list2 p-1 pt-2">
-            <input type="number" step="0.01" value="0.00" min="0.01"
+            <input type="number"
                    class="form-control" name="freeOffer[]" v-model="freeOffer">
         </div>
         <div class="sales_list2 p-1 pt-2">
@@ -52,13 +52,13 @@ export default {
 
     computed: {
         disVal() {
-            let discount =  this.article.sell_price * this.saleQt * this.discount / 100;
+            let discount = Math.round(this.article.sell_price * this.saleQt * this.discount)/100;
             this.$emit('update-discount', [discount, this.ind]);
 
             return discount;
         },
         totalVal() {
-            let total = this.article.sell_price * this.saleQt * (100 - this.discount) / 100;
+            let total = Math.round(this.article.sell_price * this.saleQt * (100 - this.discount) )/ 100;
             this.$emit('update-total', [total, this.ind]);
 
             return total;

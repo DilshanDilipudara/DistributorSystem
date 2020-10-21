@@ -139,12 +139,14 @@
                                             <input type="number" class="form-control" id="cash_amount"
                                                    placeholder="cash amount"
                                                    name="cashAmount"
+                                                   step="0.01" value="0.00" min="0.01"
                                                    :disabled="!cashTaken"
                                                    v-model="cashAmount" required>
                                         </div>
                                         <div class="col-lg-4 offset-lg-1">
                                             <input type="number" class="form-control" id="cheque_amount"
                                                    placeholder="check amount"
+                                                   step="0.01" value="0.00" min="0.01"
                                                    name="chequeAmount"
                                                    :disabled="!chequeTaken"
                                                     v-model="chequeAmount" required>

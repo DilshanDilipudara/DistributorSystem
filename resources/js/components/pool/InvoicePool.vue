@@ -28,11 +28,11 @@
                     <el-tabs type="border-card" v-model="activeName"
                              @tab-click="handleClick"
                              :stretch="true">
-                        <el-tab-pane label="All Orders" name="first"><invoice-table :tableData="invoices"/></el-tab-pane>
-                        <el-tab-pane label="Money to be collected" name="second"><invoice-table :tableData="toBeCollectedInvoices"/></el-tab-pane>
-                        <el-tab-pane label="Completed" name="third"><invoice-table :tableData="completedInvoices"/></el-tab-pane>
-                        <el-tab-pane label="Collect within next 7 days" name="fourth"><invoice-table :tableData="nextSevenInvoices"/></el-tab-pane>
-                        <el-tab-pane label="Deliver Pending" name="fifth"><invoice-table :tableData="pendingInvoices"/></el-tab-pane>
+                        <el-tab-pane lazy="true" label="All Orders" name="first"><invoice-table :tableData="invoices"/></el-tab-pane>
+                        <el-tab-pane lazy="true" label="Money to be collected" name="second"><invoice-table :tableData="toBeCollectedInvoices"/></el-tab-pane>
+                        <el-tab-pane lazy="true" label="Completed" name="third"><invoice-table :tableData="completedInvoices"/></el-tab-pane>
+                        <el-tab-pane lazy="true" label="Collect within next 7 days" name="fourth"><invoice-table :tableData="nextSevenInvoices"/></el-tab-pane>
+                        <el-tab-pane lazy="true" label="Deliver Pending" name="fifth"><invoice-table :tableData="pendingInvoices"/></el-tab-pane>
                     </el-tabs>
                 </el-col>
             </el-row>
@@ -88,12 +88,12 @@
         computed: {
             toBeCollectedInvoices() {
                 return this.invoices.filter((invoice) => {
-                    return invoice.pending_amount > 0;
+                    return invoice.closed === 0;
                 });
             },
             completedInvoices() {
                 return this.invoices.filter((invoice) => {
-                    return invoice.pending_amount <= 0;
+                    return invoice.closed === 1;
                 });
             },
             nextSevenInvoices() {
@@ -104,13 +104,13 @@
 
                 return this.invoices.filter((invoice) => {
                     const due_date = new Date(invoice.cheque_date).getTime();
-                    return (today.getTime()  <= due_date && due_date <= sevenFuture.getTime());
+                    return (today.getTime()  <= due_date && due_date <= sevenFuture.getTime() && invoice.closed === 0);
                 });
             },
             pendingInvoices() {
                 const today = new Date();
                 return this.invoices.filter((invoice) => {
-                    return (new Date(invoice.deliver_date).getTime() >= today.getTime());
+                    return invoice.pending === 1;
                 });
             },
         },
