@@ -16,7 +16,8 @@
             <input type="text" class="form-control" name="dumb1[]" v-model="saleQt">
         </div>
         <div class="mid_width p-1 pt-2">
-            <input type="text" class="form-control" name="dumb2[]" v-model="discount">
+            <input type="text" class="form-control" name="dumb2[]"
+                   steps="0.01" value="0.00" v-model="discount">
         </div>
         <div class="mid_width p-1 pt-2">
            <p>{{ disVal }}</p>
