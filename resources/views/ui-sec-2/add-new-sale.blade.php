@@ -109,7 +109,7 @@
                                     <div class="form-group row">
                                         <label for="inputPassword" class="col-md-12 col-lg-2 col-form-label">Payment
                                             Type</label>
-                                        <div class=" col-lg-10">
+                                        <div class="col-lg-10">
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="cashCheckbox"
                                                        name="cashTaken"

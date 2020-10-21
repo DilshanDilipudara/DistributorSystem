@@ -164,7 +164,7 @@ class ShopController extends Controller
         return redirect()->route('shops.create');
     }
 
-    public function getShops2Review()
+    public function getShopsToReview()
     {
         $shops =  Shop::where([
             ['approved', '=',  0],

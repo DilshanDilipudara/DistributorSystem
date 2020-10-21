@@ -36,7 +36,7 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ url('/metrics') }}">Metrics </a>
                     </li>
-                    
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
@@ -56,10 +56,13 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('view-new-sale') }}">Add New Sale </a>
                     </li>
-                    <li class="nav-item active">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ route('view-to-be-collected') }}">To Be Collected </a>
+                        </li>
+                        <li class="nav-item active">
                         <a class="nav-link" href="{{ route('view-transaction-pool') }}">Transaction Pool </a>
                     </li>
-                    <li class="nav-item dropdown">
+                        <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             Shops
@@ -89,7 +92,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{ url('/pending_order_summery') }}">Pending Order Summery</a>
                              <a class="dropdown-item" href="{{ url('/deliver_pending') }}">Deliver Pending</a>
-                        </div>    
+                        </div>
                     </li>
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"

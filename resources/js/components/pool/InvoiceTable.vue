@@ -35,7 +35,7 @@
         <el-table-column
             label="Status">
             <template slot-scope="scope">
-                <span>{{ scope.row.pending_amount <= 0 ? 'completed' :'half'  }}</span>
+                <span>{{ scope.row.closed ? 'completed' :'half'  }}</span>
             </template>
         </el-table-column>
         <el-table-column

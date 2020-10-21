@@ -129,10 +129,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // web app-7 pdf
 Route::get('/sec-2/add-new-sale', 'InvoiceController@showView')->name('view-new-sale');
-Route::view('/sec-2/deliver-pending', 'ui-sec-2/deliver-pending')->name('view-deliver-pending');
-Route::view('/sec-2/pending-order-summery', 'ui-sec-2/pending-order-summery')->name('view-pending-order-summery');
-Route::get('/sec-2/review-shops', 'ShopController@getShops2Review')->name('view-review-shops');
-//Route::view('/sec-2/shop-profile', 'ui-sec-2/shop-profile')->name('view-shop-profile');
+Route::get('/sec-2/to-be-collected', 'InvoiceController@showToBeCollected')->name('view-to-be-collected');
+Route::get('/sec-2/review-shops', 'ShopController@getShopsToReview')->name('view-review-shops');
 Route::view('/sec-2/transaction-pool', 'ui-sec-2/invoice-pool')->name('view-transaction-pool');
 
 Route::get('/prod-cat/{prod}/articles', 'articalController@getProdArticles')->name('get-prod-art');
@@ -141,5 +139,8 @@ Route::post('/shops/{shop}/review', 'ShopController@approve')->name('approve-sho
 Route::post('/shops/{shop}/submit', 'ShopController@submit')->name('submit-shop');
 
 Route::get('/invoices', 'InvoiceController@getPoolData')->name('get-pool-data');
+Route::post('/invoices/{invoice}/update', 'InvoiceController@update')->name('invoice-update');
+Route::get('/invoices/filtered-to-be-collected', 'InvoiceController@getFilteredToBeCollected')->name('invoice-filtered');
+
 
 Route::resource('shops', 'ShopController');

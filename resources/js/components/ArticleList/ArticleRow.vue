@@ -13,10 +13,12 @@
             <p>{{ article.sell_price }}</p>
         </div>
         <div class="sales_list2 p-1 pt-2">
-            <input type="text" class="form-control" name="saleQt[]" v-model="saleQt">
+            <input type="number" step="0.01" value="0.00" min="0.01"
+                   class="form-control" name="saleQt[]" v-model="saleQt">
         </div>
         <div class="sales_list2 p-1 pt-2">
-            <input type="text" class="form-control" name="discounts[]" v-model="discount">
+            <input type="number" step="0.01" value="0.00" min="0.01"
+                   class="form-control" name="discounts[]" v-model="discount">
         </div>
         <div class="sales_list2 p-1 pt-2">
            <p>{{ disVal }}</p>
@@ -25,7 +27,8 @@
             <p>{{ totalVal }}</p>
         </div>
         <div class="sales_list2 p-1 pt-2">
-            <input type="text" class="form-control" name="freeOffer[]" v-model="freeOffer">
+            <input type="number" step="0.01" value="0.00" min="0.01"
+                   class="form-control" name="freeOffer[]" v-model="freeOffer">
         </div>
         <div class="sales_list2 p-1 pt-2">
             <p>{{ article.min_sale_qty }}</p>
