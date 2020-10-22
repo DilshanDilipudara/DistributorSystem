@@ -41,19 +41,19 @@ Route::post('/addyear_artical_category_sales_graph', 'Article_Category_Sale_Grap
 
 //sale static
 Route::get('/saleStatic', 'staticController@view');
-Route::post('/showsalestatic','staticController@showSale');
+Route::post('/showsalestatic', 'staticController@showSale');
 
 Route::get('/monthlyStatic', 'staticController@viewmonth');
-Route::post('/monthsale','staticController@showMonth');
+Route::post('/monthsale', 'staticController@showMonth');
 
 Auth::routes();
 
 //metrics
-Route::get('/metrics','metricController@view');
-Route::post('/addmetrics','metricController@add');
-Route::get('/deletemetrics/{id}','metricController@delete');
+Route::get('/metrics', 'metricController@view');
+Route::post('/addmetrics', 'metricController@add');
+Route::get('/deletemetrics/{id}', 'metricController@delete');
 Route::get('/activemetrics/{id}', 'metricController@active');
-Route::post('/updatemetrics','metricController@update');
+Route::post('/updatemetrics', 'metricController@update');
 
 //Artical Category
 Route::get('/articalcategory', 'articalcategoryController@view');
@@ -72,57 +72,57 @@ Route::post('/updateartical', 'articalController@update');
 
 
 //suppler
-Route::get('/suppler','supplerController@view');
-Route::post('/addsuppler','supplerController@add');
-Route::get('/deletesuppler/{id}','supplerController@delete');
+Route::get('/suppler', 'supplerController@view');
+Route::post('/addsuppler', 'supplerController@add');
+Route::get('/deletesuppler/{id}', 'supplerController@delete');
 Route::get('/activesuppler/{id}', 'supplerController@active');
-Route::post('/updatesuppler','supplerController@update');
+Route::post('/updatesuppler', 'supplerController@update');
 
 
 //warehouse
-Route::get('/warehouse','warehouseController@view');
-Route::post('/addwarehouse','warehouseController@add');
-Route::get('/deletewarehouse/{id}','warehouseController@delete');
+Route::get('/warehouse', 'warehouseController@view');
+Route::post('/addwarehouse', 'warehouseController@add');
+Route::get('/deletewarehouse/{id}', 'warehouseController@delete');
 Route::get('/activewarehouse/{id}', 'warehouseController@active');
-Route::post('/updatewarehouse','warehouseController@update');
+Route::post('/updatewarehouse', 'warehouseController@update');
 
-Route::get('/supcategory','warehouseController@supcate');
+Route::get('/supcategory', 'warehouseController@supcate');
 
 //change Role
-Route::get('/rolechange','roleChange@view');
-Route::get('/deleterole/{id}','roleChange@delete');
+Route::get('/rolechange', 'roleChange@view');
+Route::get('/deleterole/{id}', 'roleChange@delete');
 Route::get('/activerole/{id}', 'roleChange@active');
-Route::post('/updaterole','roleChange@update');
+Route::post('/updaterole', 'roleChange@update');
 
 //Profile
-Route::get('/profile','profile@view');
-Route::post('/updateprofile','profile@update');
+Route::get('/profile', 'profile@view');
+Route::post('/updateprofile', 'profile@update');
 
 
 //Expense Type
-Route::get('/ExpenseType','expenseTypeController@view');
-Route::post('/addexpensetype','expenseTypeController@add');
-Route::get('/deleteexpensetype/{id}','expenseTypeController@delete');
+Route::get('/ExpenseType', 'expenseTypeController@view');
+Route::post('/addexpensetype', 'expenseTypeController@add');
+Route::get('/deleteexpensetype/{id}', 'expenseTypeController@delete');
 Route::get('/activeexpensetype/{id}', 'expenseTypeController@active');
-Route::post('/updateexpensetype','expenseTypeController@update');
+Route::post('/updateexpensetype', 'expenseTypeController@update');
 
 
 //Vechile
-Route::get('/vehicle','vehicleController@view');
-Route::post('/addvehicle','vehicleController@add');
-Route::get('/deletevehicle/{id}','vehicleController@delete');
+Route::get('/vehicle', 'vehicleController@view');
+Route::post('/addvehicle', 'vehicleController@add');
+Route::get('/deletevehicle/{id}', 'vehicleController@delete');
 Route::get('/activevehicle/{id}', 'vehicleController@active');
-Route::post('/updatevehicle','vehicleController@update');
+Route::post('/updatevehicle', 'vehicleController@update');
 
 //Expense
-Route::get('/Expenses','ExpensesController@view');
-Route::post('/addExpenses','ExpensesController@add');
-Route::post('/updateExpenses','ExpensesController@update');
+Route::get('/Expenses', 'ExpensesController@view');
+Route::post('/addExpenses', 'ExpensesController@add');
+Route::post('/updateExpenses', 'ExpensesController@update');
 
 //Transport Expense
-Route::get('/transportExpenses','TrasportExpensesController@view');
-Route::post('/addTrasportExpenses','TrasportExpensesController@add');
-Route::post('/updateTrasportExpenses','TrasportExpensesController@update');
+Route::get('/transportExpenses', 'TrasportExpensesController@view');
+Route::post('/addTrasportExpenses', 'TrasportExpensesController@add');
+Route::post('/updateTrasportExpenses', 'TrasportExpensesController@update');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

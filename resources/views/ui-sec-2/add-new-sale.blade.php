@@ -10,7 +10,7 @@
         <section>
             <h2 class="col-md-12 text-center"> Add New Sale</h2>
         </section>
-        <form id="add-new-sale-form" action="{{ route('add-new-sale') }}" method="post">
+        <form id="add-new-sale-form" action="{{ route('add-new-sale') }}" method="post" enctype="multipart/form-data">
             @csrf
             <section>
                 <div class="text3">
@@ -19,23 +19,9 @@
                             <div class="row">
                                 <div class="col-md-12 col-lg-10">
                                     <div class="form-group row">
-                                        <label for="inputPassword" class="col-md-12 col-lg-2 col-form-label">Invoice
-                                            number</label>
-                                        <div class=" col-lg-10">
-                                            <input type="text" class="form-control" id="inputPassword"
-                                                   placeholder="invoice number"
-                                                   name="invNum" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 col-lg-10">
-                                    <div class="form-group row">
-                                        <label for="inputPassword" class="col-md-12 col-lg-2 col-form-label">Shop
+                                        <label for="shopSelect" class="col-md-12 col-lg-2 col-form-label">Shop
                                             name</label>
                                         <div class="col-lg-10">
-                                            <label class="mr-sm-2 sr-only" for="shopSelect">Preference</label>
                                             <select class="custom-select mr-sm-2" id="shopSelect" name="shop"
                                                     v-model="shop" required>
                                                 <option selected value="0">Choose...</option>
@@ -81,11 +67,19 @@
             </section>
 
             <section style="overflow-x: auto !important;" class="mt-4 ml-sm-2 mr-sm-2">
-                    @verbatim
+                @verbatim
                     <div id="articleList">
-                        <article-list @error-state-change="handleArticleError" @total-change="handleTotalChange"></article-list>
+                        <article-list
+                            :articles="articles"
+                            :sales-list="salesList"
+                            @error-state-change="handleArticleError"
+                            @reset-articles="resetArticlesList"
+                            @total-change="handleTotalChange"
+                            @rmv-sales-list-article="rmvSalesListArticle"
+                            @add-sales-list-article="addSalesListArticle"
+                        ></article-list>
                     </div>
-                    @endverbatim
+                @endverbatim
             </section>
 
             <section class="mt-4 pt-4">
@@ -149,7 +143,7 @@
                                                    step="0.01" value="0.00" min="0.01"
                                                    name="chequeAmount"
                                                    :disabled="!chequeTaken"
-                                                    v-model="chequeAmount" required>
+                                                   v-model="chequeAmount" required>
                                         </div>
                                     </div>
                                 </div>
@@ -199,11 +193,18 @@
             </section>
         </form>
         <modal-window v-if="showErrorModal"
-                  :title="'RECHECK!'"
-                  :message="errorMessage"
-                  :allow-btn-msg="''"
-                  :cancel-btn-msg="'Close'"
-                  @hide-modal="showErrorModal = false"></modal-window>
+                      :title="'RECHECK!'"
+                      :message="errorMessage"
+                      :allow-btn-msg="''"
+                      :cancel-btn-msg="'Close'"
+                      @hide-modal="showErrorModal = false"></modal-window>
+
+        <modal-window v-if="showSaleSuccessModal"
+                      :title="'Sale Added Successfully'"
+                      :message="successMessage"
+                      :allow-btn-msg="'Ok'"
+                      :cancel-btn-msg="''"
+                      @change-allowed="showSaleSuccessModal = false"></modal-window>
     </div>
 
 @endsection

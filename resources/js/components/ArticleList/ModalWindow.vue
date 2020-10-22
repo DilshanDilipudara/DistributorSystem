@@ -17,7 +17,7 @@
                     <div class="text-center">
                         <button type="button" class="btn btn-primary" @click="$emit('change-allowed')"
                                 v-show="allowBtnMsg">{{ allowBtnMsg }}</button>
-                        <button type="button" class="btn btn-danger"
+                        <button type="button" class="btn btn-danger" v-show="cancelBtnMsg"
                                 @click="$emit('hide-modal')">{{ cancelBtnMsg }}</button>
                     </div>
                 </div>

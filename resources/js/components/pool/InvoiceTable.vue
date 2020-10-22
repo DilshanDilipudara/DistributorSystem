@@ -28,7 +28,7 @@
         <el-table-column
             label="Pending Amount">
         <template slot-scope="scope">
-            <span>{{ scope.row.pending_amount <= 0 ? 0 : scope.row.pending_amount  }}</span>
+            <span>{{ scope.row.pending_amount <= 0 ? 0.00 : Math.round(scope.row.pending_amount * 100) / 100  }}</span>
         </template>
         </el-table-column>
         <el-table-column
