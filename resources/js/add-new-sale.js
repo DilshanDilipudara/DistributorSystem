@@ -9,6 +9,8 @@ const app = new Vue({
     el: '#app',
     data: {
         shop: '{}',
+        articles: [],
+        salesList: [],
         cashTaken: false,
         creditTaken: false,
         chequeTaken: false,
@@ -18,6 +20,8 @@ const app = new Vue({
         showErrorModal: false,
         total: 0,
         errorMessage: '',
+        showSaleSuccessModal: false,
+        successMessage: '',
     },
     computed: {
         selectedShop() {
@@ -54,17 +58,54 @@ const app = new Vue({
         handleTotalChange(newTotal) {
             this.total = newTotal;
         },
+        fetchArticles() {
+            const list = document.getElementById('articleCatList');
+
+            axios.get(`/prod-cat/${list.value}/articles`).then((response) => {
+                this.articles = response.data;
+            }).catch((error) => {
+                console.error(error);
+            });
+        },
+        resetArticlesList() {
+            this.articles = [];
+        },
+        rmvSalesListArticle(articleIndex) {
+            this.salesList.splice(articleIndex, 1);
+        },
+        addSalesListArticle(artcleIndex) {
+            this.salesList.push(this.articles[artcleIndex]);
+        },
     },
     mounted() {
+        document.getElementById('articleCatList').
+            addEventListener('change', (event) => {
+                if (event.target.value > 0) {
+                    this.fetchArticles();
+                } else {
+                    this.articles = [];
+                }
+            });
+
         document.getElementById('add-new-sale-form').
             addEventListener('submit', (event) => {
                 event.preventDefault();
 
                 if (this.noArticleErrors && !this.hasCreditErrors &&
                     !this.noArticleQty) {
-                    document.getElementById('add-new-sale-form').submit();
-                }
-                else {
+
+                    axios.post('/add-new-sale', new FormData(event.target)).
+                        then(res => {
+                            this.successMessage = `Your sale successfully saved with invoice number: <b>${res.data}</b>`;
+                            this.articles = [];
+                            this.salesList = [];
+                            event.target.reset();
+                            this.shop = 0;
+                            this.showSaleSuccessModal = true;
+                        }).catch(error => {
+                        console.error(error);
+                    });
+                } else {
                     this.errorMessage = `There are some errors,<br>
                         ${!this.noArticleErrors ?
                         'sale quantity less than minimum quantity <br>' :

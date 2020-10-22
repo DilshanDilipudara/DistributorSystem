@@ -13,20 +13,20 @@
             <p>{{ article.sell_price }}</p>
         </div>
         <div class="mid_width p-1 pt-2">
-            <input type="text" class="form-control" name="dumb1[]" v-model="saleQt">
+            <input type="number" class="form-control" name="dumb1[]" v-model="saleQt">
         </div>
         <div class="mid_width p-1 pt-2">
-            <input type="text" class="form-control" name="dumb2[]"
+            <input type="number" class="form-control" name="dumb2[]"
                    steps="0.01" value="0.00" v-model="discount">
         </div>
         <div class="mid_width p-1 pt-2">
-           <p>{{ disVal }}</p>
+            <p>{{ disVal }}</p>
         </div>
         <div class="mid_width p-1 pt-2">
             <p>{{ totalVal }}</p>
         </div>
         <div class="mid_width p-1 pt-2">
-            <input type="text" class="form-control" name="dumb3[]" v-model="freeOffer">
+            <input type="number" class="form-control" name="dumb3[]" v-model="freeOffer">
         </div>
         <div class="mid_width p-1 pt-2">
             <span>{{ article.min_sale_qty }}</span>
@@ -48,61 +48,57 @@
 </template>
 
 <script>
-export default {
-    props: ['article', 'ind', 'itmList'],
-    data() {
-        return {
-            saleQt: 0,
-            discount: 0,
-            freeOffer: 0,
-            added: false,
-            showModal: false,
-        };
-    },
-    computed: {
-        disVal() {
-            let discount =  Math.round(this.article.sell_price * this.saleQt * this.discount)/100;
-            this.$emit('update-discount', [discount, this.ind]);
-
-            return discount;
-        },
-        totalVal() {
-            let total = Math.round(this.article.sell_price * this.saleQt * (100 - this.discount) )/ 100;
-            this.$emit('update-total', [total, this.ind]);
-
-            return total;
-        },
-        hasError(){
-            let isError = (this.saleQt > 0) && (this.saleQt < this.article.min_sale_qty);
-            this.$emit('error-status-change', [isError, this.ind]);
-
-            return isError;
-        },
-        classDangerObj() {
+    export default {
+        props: ['article', 'ind', 'itmList'],
+        data() {
             return {
-                'text-danger': this.hasError,
+                saleQt: 0,
+                discount: 0,
+                freeOffer: 0,
+                added: false,
+                showModal: false,
             };
         },
-    },
-    methods: {
-        onAddChange() {
-            // if (!(this.saleQt <= 0 || this.saleQt < this.article.min_sale_qty)) {
+        computed: {
+            disVal() {
+                let discount = Math.round(this.article.sell_price * this.saleQt * this.discount) / 100;
+                this.$emit('update-discount', [discount, this.ind]);
+
+                return discount;
+            },
+            totalVal() {
+                let total = Math.round(this.article.sell_price * this.saleQt * (100 - this.discount)) / 100;
+                this.$emit('update-total', [total, this.ind]);
+
+                return total;
+            },
+            hasError() {
+                let isError = (this.saleQt > 0) && (this.saleQt < this.article.min_sale_qty);
+                this.$emit('error-status-change', [isError, this.ind]);
+
+                return isError;
+            },
+            classDangerObj() {
+                return {
+                    'text-danger': this.hasError,
+                };
+            },
+        },
+        methods: {
+            onAddChange() {
                 this.$emit('add-changed',
                     [this.ind, this.added, this.article.id, this.saleQt, this.discount, this.freeOffer]);
-            /*}
-            else {
-                this.showModal = true;
-            }*/
+
+            },
+            hideModal() {
+                this.showModal = false;
+                this.added = false;
+            },
         },
-        hideModal() {
-            this.showModal = false;
-            this.added = false;
-        }
-    },
-    mounted() {
-        this.added = (this.itmList.findIndex((itm) => {
-            return itm.id === this.article.id;
-        }) >= 0);
-    }
-}
+        mounted() {
+            this.added = (this.itmList.findIndex((itm) => {
+                return itm.id === this.article.id;
+            }) >= 0);
+        },
+    };
 </script>

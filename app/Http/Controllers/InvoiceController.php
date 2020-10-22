@@ -63,9 +63,8 @@ class InvoiceController extends Controller
 
     public function addNewSale(Request $request)
     {
-//        dd($request);
         $inv = new Invoice;
-        $inv->number = $request->invNum;
+        $inv->number = "number";
         $inv->date = $request->invDate;
         $shop = json_decode($request->shop);
         $inv->shop_id = $shop->id;
@@ -80,7 +79,7 @@ class InvoiceController extends Controller
         $inv->comment = $request->comments;
         $inv->pending = 1;
 
-        if(!$request->creditTaken){
+        if (!$request->creditTaken) {
             $inv->closed = 1;
         } else {
             $inv->closed = 0;
@@ -101,33 +100,39 @@ class InvoiceController extends Controller
 
         $inv->articles()->attach($articles);
 
-        return redirect()->route('view-new-sale');
+        $inv_number = date('Ymd') . sprintf('%05d', $shop->id) . sprintf('%03d', $inv->id);
+
+        $inv->number = $inv_number;
+        $inv->save();
+
+        return $inv_number;
     }
 
 
     public function showToBeCollected(Request $request)
     {
-        $invoices =  $this->getToBeCollected($request->minDate, $request->maxDate, $request->invoiceNumber);
+        $invoices = $this->getToBeCollected($request->minDate, $request->maxDate, $request->invoiceNumber);
 
         return response()->view('ui-sec-2.to-be-collected', compact('invoices'));
     }
 
-    public function getFilteredToBeCollected(Request $request) {
+    public function getFilteredToBeCollected(Request $request)
+    {
         $invoices = $this->getToBeCollected($request->minDate, $request->maxDate, $request->invoiceNumber);
 
         return response()->view('ui-sec-2.to-be-collected-filtered', compact('invoices'));
 
     }
 
-    public function update(Request $request, Invoice $invoice) {
-        if($request->cashTaken) {
+    public function update(Request $request, Invoice $invoice)
+    {
+        if ($request->cashTaken) {
             $invoice->cash = $invoice->cash + $request->amount;
-        }
-        elseif ($request->chequeTaken){
+        } elseif ($request->chequeTaken) {
             $invoice->cheque = $invoice->cheque + $request->amount;
         }
 
-        if($invoice->total <= $invoice->cash + $invoice->cheque) {
+        if ($invoice->total <= $invoice->cash + $invoice->cheque) {
             $invoice->closed = 1;
         }
 
@@ -163,19 +168,19 @@ class InvoiceController extends Controller
                 'users.name as sales_by'
             )
             ->where('invoices.closed', 0)
-            ->when( ($user->role === 'admin' || $user->role === 'manager'), function ($query) {
+            ->when(($user->role === 'admin' || $user->role === 'manager'), function ($query) {
                 return $query;
             }, function ($query) use ($user) {
                 return $query->where('invoices.user_id', $user->id);
             })
             ->when($invoice_number, function ($query) use ($invoice_number) {
-                $query->where( 'invoices.number', $invoice_number);
+                $query->where('invoices.number', $invoice_number);
             })
             ->when($full_range, function ($query) use ($minDate, $maxDate) {
                 return $query->whereBetween('date', [$minDate, $maxDate]);
             }, function ($query) use ($minDate, $maxDate) {
-                if($minDate) return $query->where('date', '>=', $minDate);
-                elseif($maxDate) return $query->where('date', '<=', $maxDate);
+                if ($minDate) return $query->where('date', '>=', $minDate);
+                elseif ($maxDate) return $query->where('date', '<=', $maxDate);
             })
             ->groupBy('invoices.id')
             ->when($full_range, function ($query) {
